@@ -15,6 +15,7 @@
 /user.yaml
 /lua/*.userdb
 /lua/input_stats.lua
+/lua/sequence.txt
 /build
 /wanxiang.userdb
 /sync
