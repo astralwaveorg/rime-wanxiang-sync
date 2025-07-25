@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+.AppleDouble
+.Trash
+.Trashes
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.DocumentRevisions-V100
+
+# rime user files
+/lua/*.userdb
+/build
