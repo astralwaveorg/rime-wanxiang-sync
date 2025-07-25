@@ -11,5 +11,8 @@
 .DocumentRevisions-V100
 
 # rime user files
+/installation.yaml
+/user.yaml
 /lua/*.userdb
 /build
+/wanxiang.userdb
