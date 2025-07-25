@@ -14,5 +14,6 @@
 /installation.yaml
 /user.yaml
 /lua/*.userdb
+/lua/input_stats.lua
 /build
 /wanxiang.userdb
