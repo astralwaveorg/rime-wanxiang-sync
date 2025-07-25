@@ -70,7 +70,10 @@ jobs:
 
           # -a: 归档模式, -v: 显示详情, --delete: 删除多余文件, --exclude: 排除项
           rsync -av --delete \
+            --exclude 'bin/' \
             --exclude 'custom/' \
+            --exclude '.gitignore' \
+            --exclude 'README.md' \
             --exclude 'custom_phrase.txt' \
             --exclude '简纯.trime.yaml' \
             --exclude 'lua/input_stats.lua' \

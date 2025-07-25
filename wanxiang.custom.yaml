@@ -1,18 +1,15 @@
 # Rime · 万象拼音 · 增补文件
 patch:
   # 1. 核心设定：强制使用纯全拼方案，并更新方案信息
-  set_shuru_schema: null # 禁用原始方案中的动态方案切换
-  speller/algebra:
-    __patch:
-      - wanxiang.schema:/全拼 # 直接指定加载原始文件中的“全拼”解码规则
-  schema/version: "v2.1"
-  schema/description: "精简强大的纯全拼方案，支持平翘舌模糊音与手动造词。"
+  set_shuru_schema: 全拼 # 直接指定默认加载全拼方案，取代原始的动态切换机制
+  schema/version: "v2.2"
+  schema/description: "精简强大的纯全拼方案，支持平翘舌模糊音、中英混输与手动造词。"
 
-  # 2. 依赖项：移除反查功能，保留中英混输
+  # 2. 依赖项：移除反查功能，保留中英混输 (维持不变)
   schema/dependencies:
     - wanxiang_mixedcode
 
-  # 3. 开关菜单：精简为高频选项，并设定默认状态
+  # 3. 开关菜单：精简为高频选项，并设定默认状态 (维持不变)
   switches:
     - name: ascii_mode
       states: [汉字, 西文]
@@ -29,7 +26,27 @@ patch:
     - name: prediction
       states: [预测, 闭锁]
 
-  # 4. 引擎精简：覆写原始列表，移除反查、双拼切换等
+  # 4.1 引擎精简：覆写所有列表，确保纯净
+  engine/processors:
+    - predictor
+    - lua_processor@*select_character
+    - lua_processor@*quick_symbol_text
+    - lua_processor@*super_tips
+    - lua_processor@*super_sequence*P
+    - lua_processor@*limit_repeated
+    - lua_processor@*backspace_limit
+    - lua_processor@*userdb_sync_delete
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - lua_processor@*key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+
+  # 4.2 精简 translators
   engine/translators:
     - predict_translator
     - punct_translator
@@ -47,6 +64,7 @@ patch:
     - script_translator@user_dict_set
     - lua_translator@*force_gc
 
+  # 4.3 精简 filters
   engine/filters:
     - lua_filter@*super_sequence*F
     - lua_filter@*autocap_filter
@@ -58,6 +76,7 @@ patch:
     - lua_filter@*text_formatting
     - uniquifier
 
+  # 5 精简 segmentors
   engine/segmentors:
     - ascii_segmentor
     - matcher
@@ -66,7 +85,17 @@ patch:
     - punct_segmentor
     - fallback_segmentor
 
-  # 5. 全局清理：通过置空(null)来禁用不再使用的模块与双拼方案
+  # 6. 功能增强：为全拼方案追加平翘舌模糊音规则
+  speller/algebra/+:
+    # 平翘舌模糊音 z<=>zh, c<=>ch, s<=>sh
+    - derive/^z/zh/
+    - derive/^zh/z/
+    - derive/^c/ch/
+    - derive/^ch/c/
+    - derive/^s/sh/
+    - derive/^sh/s/
+
+  # 7. 全局清理：通过置空(null)来禁用不再使用的模块与所有双拼方案
   wanxiang_reverse: null
   radical_reverse_lookup: null
   s2hk: null
@@ -83,7 +112,7 @@ patch:
   拼音加加: null
   乱序17: null
 
-  # 6. 快捷键与触发符：覆写列表，移除闲置功能
+  # 8. 快捷键与触发符：覆写列表，移除闲置功能
   recognizer/patterns:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
     unicode: "^U[a-f0-9]+"
@@ -145,12 +174,3 @@ patch:
     - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }
     - { when: always, toggle: s2t, accept: Control+Shift+4 }
     - { when: always, toggle: s2t, accept: Control+Shift+dollar }
-
-  # 7. 功能增强：为全拼方案追加平翘舌模糊音规则
-  speller/algebra/+:
-    - derive/^z/zh/
-    - derive/^zh/z/
-    - derive/^c/ch/
-    - derive/^ch/c/
-    - derive/^s/sh/
-    - derive/^sh/s/
