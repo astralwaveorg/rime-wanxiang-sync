@@ -1,0 +1,134 @@
+# ==================================================================================
+# GitHub Actions Workflow: 自动同步 amzxyz/rime_wanxiang 最新版本
+#
+# 功能:
+# 1. 定时/手动触发。
+# 2. 智能查找并下载最新的有效 Release。
+# 3. 强制同步文件，并排除个人配置。
+# 4. 清理旧配置，并从 custom 目录复制新配置。
+# 5. 若有变更，则自动提交、推送并创建新的发行版。
+# ==================================================================================
+
+name: 自动同步 Rime 万象方案
+
+on:
+  schedule:
+    # UTC 19:20 (每隔一天) -> 北京时间 3:20
+    - cron: '20 19 */2 * *'
+
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  sync-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 读写权限，用于提交代码和创建 Release
+
+    steps:
+      - name: 🚚 检出代码
+        uses: actions/checkout@v4
+        with:
+          ref: 'main'
+
+      - name: 🔍 查找最新有效版本
+        id: get_release
+        run: |
+          echo "🔄 正在查找 amzxyz/rime_wanxiang 的最新有效版本..."
+          API_URL="https://api.github.com/repos/amzxyz/rime_wanxiang/releases"
+          RELEASES_INFO=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github.v3+json" "$API_URL?per_page=30")
+
+          # 筛选出资产中包含 "rime-wanxiang-base.zip" 的最新 Release
+          TARGET_RELEASE=$(echo "$RELEASES_INFO" | jq -c '[.[] | select(.assets | map(.name) | contains(["rime-wanxiang-base.zip"]))][0]')
+
+          if [ -z "$TARGET_RELEASE" ] || [ "$TARGET_RELEASE" == "null" ]; then
+            echo "❗️ 错误：未找到包含 'rime-wanxiang-base.zip' 的有效版本。"
+            exit 1
+          fi
+
+          RELEASE_VERSION=$(echo "$TARGET_RELEASE" | jq -r .tag_name)
+          DOWNLOAD_URL=$(echo "$TARGET_RELEASE" | jq -r '.assets[] | select(.name == "rime-wanxiang-base.zip") | .browser_download_url')
+
+          echo "✅ 成功找到目标版本: ${RELEASE_VERSION}"
+          echo "release_version=${RELEASE_VERSION}" >> $GITHUB_OUTPUT
+          echo "download_url=${DOWNLOAD_URL}" >> $GITHUB_OUTPUT
+
+      - name: 📥 下载并解压
+        run: |
+          echo "⏳ 正在下载 Release 文件..."
+          TEMP_DIR="/tmp/rime_sync"
+          mkdir -p ${TEMP_DIR}/source
+          curl -L "${{ steps.get_release.outputs.download_url }}" -o "${TEMP_DIR}/rime-wanxiang-base.zip"
+
+          echo "📦 正在解压文件..."
+          unzip -q "${TEMP_DIR}/rime-wanxiang-base.zip" -d "${TEMP_DIR}/source/"
+          echo "✅ 解压成功。"
+
+      - name: 🔄 同步文件
+        run: |
+          echo "⏳ 正在同步文件至仓库..."
+          SOURCE_DIR="/tmp/rime_sync/source"
+
+          # -a: 归档模式, -v: 显示详情, --delete: 删除多余文件, --exclude: 排除项
+          rsync -av --delete \
+            --exclude 'custom/' \
+            --exclude 'custom_phrase.txt' \
+            --exclude '简纯.trime.yaml' \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            "${SOURCE_DIR}/" "./"
+          echo "✅ 同步完成。"
+
+      - name: 📝 清理并复制个人配置
+        run: |
+          echo "🗑️ 正在清理根目录的旧配置文件..."
+          # -maxdepth 1: 仅限根目录, -name: 匹配文件名, -delete: 删除
+          find . -maxdepth 1 -type f -name "*custom.yaml" -delete
+
+          echo "📂 正在从 'custom' 目录复制新配置..."
+          if [ ! -d "custom" ]; then
+            echo "⚠️ 'custom' 目录不存在，跳过复制。"
+            exit 0
+          fi
+          # -v: 显示详情, -f: 强制覆盖
+          find custom -type f -name "*.yaml" -exec cp -vf {} ./ \;
+          echo "✅ 配置处理完成。"
+
+      - name: ✨ 提交并发布
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "🔧 配置 Git 用户..."
+          git config user.name "GitHub Actions Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "🔎 检查文件变更..."
+          if [[ -z $(git status --porcelain) ]]; then
+            echo "👍 文件已是最新，无需同步。"
+            exit 0
+          fi
+
+          echo "📝 检测到变更，准备提交..."
+          git add -A
+          COMMIT_MSG="chore(自动同步): 同步 amzxyz/rime_wanxiang 至 ${{ steps.get_release.outputs.release_version }}"
+          git commit -m "${COMMIT_MSG}"
+
+          echo "🚀 正在推送至 main 分支..."
+          git push --force
+          echo "🎉 推送成功，准备创建 Release..."
+
+          # 格式: v25.07.26
+          NEW_TAG=$(date +v%y.%m.%d)
+          echo "🏷️  生成新标签: ${NEW_TAG}"
+
+          # 打包为 rime.zip, 排除 .git 目录
+          echo "📦 正在打包仓库文件为 rime.zip..."
+          zip -qr rime.zip . -x ".git/*"
+
+          # 使用 GitHub CLI 创建 Release
+          echo "🚀 正在创建 GitHub Release..."
+          gh release create "$NEW_TAG" \
+            ./rime.zip \
+            --title "自动同步发行版 ${NEW_TAG}" \
+            --notes "本次更新自动同步自 amzxyz/rime_wanxiang 的版本: **${{ steps.get_release.outputs.release_version }}**"
+
+          echo "✅ 新发行版 ${NEW_TAG} 创建成功！"

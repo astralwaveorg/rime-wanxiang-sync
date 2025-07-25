@@ -1,0 +1,281 @@
+# 鼠须管配置增补文件
+patch:
+  style/color_scheme: gruvbox_light
+  style/color_scheme_dark: gruvbox_dark
+  style/horizontal: true
+  style/inline_preedit: true
+  style/preedit_type: composition
+  style/candidate_cursor: box # 或 box、highlight、dot、none
+
+  preset_color_schemes:
+    # --- Group 1: macOS Native ---
+    macos_native_light:
+      name: "macOS / 原生亮色"
+      candidate_format: "%c %@ "
+      corner_radius: 5
+      hilited_corner_radius: 5
+      line_spacing: 10
+      border_height: 4
+      border_width: 4
+      font_face: "PingFangSC"
+      font_point: 16
+      label_font_point: 13
+      text_color: 0x424242
+      back_color: 0xFFFFFF
+      border_color: 0xFFFFFF
+      label_color: 0x999999
+      candidate_text_color: 0x3c3c3c
+      comment_text_color: 0x999999
+      hilited_text_color: 0x999999
+      hilited_back_color: 0xD75A00
+      hilited_candidate_text_color: 0xFFFFFF
+      hilited_candidate_label_color: 0xFFFFFF
+      hilited_comment_text_color: 0x999999
+
+    macos_native_dark:
+      name: "macOS / 原生暗色"
+      author: "xiehuc <xiehuc@gmail.com>"
+      candidate_list_layout: linear
+      inline_preedit: true
+      candidate_format: "%c\u2005%@"
+      corner_radius: 5
+      hilited_corner_radius: 3
+      border_height: 6
+      border_width: 6
+      font_face: "PingFangSC"
+      font_point: 16
+      label_font_point: 14
+      text_color: 0xdedddd
+      back_color: 0x252320
+      label_color: 0x888785
+      border_color: 0x020202
+      candidate_text_color: 0xdedddd
+      hilited_text_color: 0xdedddd
+      hilited_back_color: 0x252320
+      hilited_candidate_text_color: 0xffffff
+      hilited_candidate_back_color: 0xcb5d00
+      hilited_candidate_label_color: 0xffffff
+      comment_text_color: 0xdedddd
+
+    # --- Group 2: macOS Modern ---
+    macos_modern_light:
+      name: "macOS / 現代亮色"
+      author: "Lufs X <i@isteed.cc>"
+      alpha: 0.95
+      candidate_list_layout: linear
+      inline_preedit: true
+      candidate_format: "%c\u2005%@"
+      corner_radius: 5
+      border_height: 0
+      border_width: 0
+      font_face: "LXGWWenKai-Regular,PingFangSC"
+      font_point: 16.5
+      label_font_point: 12
+      color_space: display_p3
+      back_color: 0xFFFFFF
+      border_color: 0xECE4FC
+      candidate_text_color: 0x121212
+      comment_text_color: 0x8E8E8E
+      hilited_candidate_back_color: 0xECE4FC
+      hilited_candidate_label_color: 0xB18FF4
+      hilited_candidate_text_color: 0x7A40EC
+      label_color: 0x888785
+      text_color: 0x8100EB
+      hilited_corner_radius: 0
+
+    macos_modern_dark:
+      name: "macOS / 現代暗色"
+      candidate_format: "%c %@ "
+      corner_radius: 5
+      hilited_corner_radius: 5
+      line_spacing: 10
+      border_height: 4
+      border_width: 4
+      font_face: "PingFangSC"
+      font_point: 16
+      label_font_point: 13
+      text_color: 0x424242
+      back_color: 0x252a2e
+      border_color: 0x050505
+      label_color: 0x999999
+      candidate_text_color: 0xe9e9ea
+      comment_text_color: 0x999999
+      hilited_text_color: 0x999999
+      hilited_back_color: 0xD75A00
+      hilited_candidate_text_color: 0xFFFFFF
+      hilited_candidate_label_color: 0xFFFFFF
+      hilited_comment_text_color: 0x999999
+
+    # --- Group 3: Gruvbox ---
+    gruvbox_light:
+      name: "Gruvbox / Light"
+      author: Q
+      corner_radius: 5
+      back_color: 0xc7f1fb
+      border_color: 0xb2dbeb
+      candidate_text_color: 0x888545
+      comment_text_color: 0xa2577f
+      hilited_back_color: 0xb2dbeb
+      hilited_candidate_text_color: 0x000000
+      hilited_label_color: 0x1a9798
+      hilited_text_color: 0x1d24cc
+      label_color: 0x0e5dd6
+      text_color: 0x6a9d68
+
+    gruvbox_dark:
+      name: "Gruvbox / Dark" # 新的、優雅的版本
+      author: "Gemini (Refined)"
+      font_face: "PingFangSC"
+      font_point: 16
+      label_font_point: 14
+      corner_radius: 5
+      candidate_list_layout: linear
+      candidate_format: "%c %@ "
+      back_color: 0x282828 # 基底: 溫暖的深灰色背景 (bg0)
+      text_color: 0xebdbb2 # 輸入碼: 使用主前景色，視覺連貫 (fg)
+      candidate_text_color: 0xebdbb2 # 候補文字: 清晰柔和的主前景色 (fg)
+      comment_text_color: 0x928374 # 註解/序號: 低調的輔助灰色 (gray)
+      label_color: 0x928374 #
+      hilited_candidate_back_color: 0x3c3836 # 高亮背景: 使用亮一級的灰色， subtle & elegant (bg1)
+      hilited_candidate_text_color: 0xfabd2f # 高亮文字: 使用標誌性亮黃色作為點綴 (yellow)
+      hilited_candidate_label_color: 0xebdbb2 # 高亮序號: 提亮至主前景色，建立層次
+      hilited_comment_text_color: 0xebdbb2 # 高亮註解: 同上
+
+    # Nullify all other themes to hide them from the list
+    native: null
+    aqua: null
+    azure: null
+    luna: null
+    lost_temple: null
+    dark_temple: null
+    purity_of_form: null
+    purity_of_essence: null
+    solarized_rock: null
+    clean_white: null
+    apathy: null
+    dust: null
+    solarized_light: null
+    solarized_dark: null
+    mac_light: null
+    mac_dark: null
+    mac_green: null
+    mac_orange: null
+    mac_blue: null
+    mojave_dark: null
+    psionics: null
+    win10: null
+    google: null
+    milan: null
+    ink: null
+    purity: null
+    starcraft: null
+    nord_light: null
+    nord_dark: null
+    roseo_maple: null
+    calm: null
+    eucalyptus: null
+    blackpink: null
+    easy_dark: null
+    pink: null
+    rose_red: null
+    so_young_qmod_01: null
+    win10black: null
+    win10blue: null
+    win10gray: null
+    win11dark: null
+    win11light: null
+    ayaya_day: null
+    ayaya_night: null
+    wechat: null
+    wechat_dark: null
+    phub: null
+    black_moqi: null
+
+  # App 启动时将默认进入英文输入模式，提高效率。
+  app_options:
+    # ==== 系统工具 ====
+    com.apple.Terminal:
+      ascii_mode: true
+      no_inline: true
+    com.apple.Console:
+      ascii_mode: true
+    com.apple.DigitalColorMeter:
+      ascii_mode: true
+    com.apple.ScriptEditor2:
+      ascii_mode: true
+    com.apple.Spotlight:
+      ascii_mode: true
+      no_inline: true
+    com.apple.ActivityMonitor:
+      ascii_mode: true
+    com.google.Chrome:
+      ascii_mode: true
+      no_inline: true
+    org.mozilla.firefox:
+      ascii_mode: true
+      no_inline: true
+    com.microsoft.edgemac:
+      ascii_mode: true
+      no_inline: true
+    com.apple.Safari:
+      ascii_mode: true
+      no_inline: true
+    com.googlecode.iterm2:
+      ascii_mode: true
+      no_inline: true
+    io.alacritty:
+      ascii_mode: true
+      no_inline: true
+    com.jetbrains.intellij.ce:
+      ascii_mode: true
+      no_inline: true
+    com.jetbrains.intellij:
+      ascii_mode: true
+      no_inline: true
+    org.goland.GoLand:
+      ascii_mode: true
+      no_inline: true
+    com.jetbrains.pycharm:
+      ascii_mode: true
+      no_inline: true
+    com.microsoft.VSCode:
+      ascii_mode: true
+      no_inline: true
+    com.visualstudio.code.oss:
+      ascii_mode: true
+      no_inline: true
+    com.sublimetext.4:
+      ascii_mode: true
+      no_inline: true
+    org.vim.MacVim:
+      ascii_mode: true
+      no_inline: true
+      vim_mode: true
+    com.github.atom:
+      ascii_mode: true
+      no_inline: true
+    com.barebones.textwrangler:
+      ascii_mode: true
+      no_inline: true
+    com.postmanlabs.mac:
+      ascii_mode: true
+    org.python.IDLE:
+      ascii_mode: true
+    com.microsoft.Excel:
+      ascii_mode: true
+    com.microsoft.Powerpoint:
+      ascii_mode: true
+    com.microsoft.Word:
+      ascii_mode: true
+    md.obsidian:
+      ascii_mode: true
+    com.tencent.WeWorkMac:
+      ascii_mode: true
+    com.apple.dt.Xcode:
+      ascii_mode: true
+    com.runningwithcrayons.Alfred:
+      ascii_mode: true
+    com.blacktree.Quicksilver:
+      ascii_mode: true
+    org.videolan.vlc:
+      ascii_mode: true

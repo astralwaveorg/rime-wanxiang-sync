@@ -1,0 +1,156 @@
+# Rime · 万象拼音 · 增补文件
+patch:
+  # 1. 核心设定：强制使用纯全拼方案，并更新方案信息
+  set_shuru_schema: null # 禁用原始方案中的动态方案切换
+  speller/algebra:
+    __patch:
+      - wanxiang.schema:/全拼 # 直接指定加载原始文件中的“全拼”解码规则
+  schema/version: "v2.1"
+  schema/description: "精简强大的纯全拼方案，支持平翘舌模糊音与手动造词。"
+
+  # 2. 依赖项：移除反查功能，保留中英混输
+  schema/dependencies:
+    - wanxiang_mixedcode
+
+  # 3. 开关菜单：精简为高频选项，并设定默认状态
+  switches:
+    - name: ascii_mode
+      states: [汉字, 西文]
+    - name: ascii_punct
+      states: [中标, 英标]
+    - name: full_shape
+      states: [半角, 全角]
+    - name: emoji
+      states: [😞, 😄]
+    - name: super_tips
+      states: [关提示, 开提示]
+    - options: [s2s, s2t]
+      states: [简体, 繁体]
+    - name: prediction
+      states: [预测, 闭锁]
+
+  # 4. 引擎精简：覆写原始列表，移除反查、双拼切换等
+  engine/translators:
+    - predict_translator
+    - punct_translator
+    - script_translator
+    - lua_translator@*version_display
+    - lua_translator@*shijian
+    - lua_translator@*unicode
+    - lua_translator@*number_translator
+    - lua_translator@*super_calculator
+    - lua_translator@*input_statistics
+    - table_translator@custom_phrase
+    - table_translator@chengyu
+    - table_translator@wanxiang_mixedcode
+    - script_translator@add_user_dict
+    - script_translator@user_dict_set
+    - lua_translator@*force_gc
+
+  engine/filters:
+    - lua_filter@*super_sequence*F
+    - lua_filter@*autocap_filter
+    - lua_filter@*super_preedit
+    - lua_filter@*super_comment
+    - simplifier@emoji
+    - simplifier@s2t
+    - simplifier@chinese_english
+    - lua_filter@*text_formatting
+    - uniquifier
+
+  engine/segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - affix_segmentor@add_user_dict
+    - punct_segmentor
+    - fallback_segmentor
+
+  # 5. 全局清理：通过置空(null)来禁用不再使用的模块与双拼方案
+  wanxiang_reverse: null
+  radical_reverse_lookup: null
+  s2hk: null
+  s2tw: null
+  key_binder/search: null
+  自然码: null
+  自然龙: null
+  汉心龙: null
+  小鹤双拼: null
+  搜狗双拼: null
+  微软双拼: null
+  智能ABC: null
+  紫光双拼: null
+  拼音加加: null
+  乱序17: null
+
+  # 6. 快捷键与触发符：覆写列表，移除闲置功能
+  recognizer/patterns:
+    punct: "^/([0-9]|10|[A-Za-z]+)$"
+    unicode: "^U[a-f0-9]+"
+    number: "^R[0-9]+[.]?[0-9]*"
+    lunar: "^N[0-9]{1,8}"
+    calculator: "^V.*$"
+    quick_symbol: "^;.*$"
+
+  key_binder/bindings:
+    - { when: composing, accept: Control+w, send: Control+BackSpace }
+    - { when: has_menu, accept: "Control+t", toggle: super_tips }
+    - { when: has_menu, accept: "Tab", send: "Control+Right" }
+    - { when: composing, accept: "Tab", send: "Control+Right" }
+    - {
+        when: composing,
+        accept: "Control+Tab",
+        send_sequence: "{Home}{Shift+Right}{1}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+1,
+        send_sequence: "{Home}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+2,
+        send_sequence: "{Home}{Shift+Right}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+3,
+        send_sequence: "{Home}{Shift+Right}{Shift+Right}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+4,
+        send_sequence: "{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+5,
+        send_sequence: "{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}",
+      }
+    - {
+        when: composing,
+        accept: Control+6,
+        send_sequence: "{Home}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}{Shift+Right}",
+      }
+    - {
+        match: "^.*`$",
+        accept: "`",
+        send_sequence: "{BackSpace}{Home}{`}{`}{End}",
+      }
+    - { when: has_menu, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+    - { when: composing, accept: Alt+Left, send: Shift+Left }
+    - { when: composing, accept: Alt+Right, send: Shift+Right }
+    - { when: always, toggle: ascii_punct, accept: Control+Shift+3 }
+    - { when: always, toggle: ascii_punct, accept: Control+Shift+numbersign }
+    - { when: always, toggle: s2t, accept: Control+Shift+4 }
+    - { when: always, toggle: s2t, accept: Control+Shift+dollar }
+
+  # 7. 功能增强：为全拼方案追加平翘舌模糊音规则
+  speller/algebra/+:
+    - derive/^z/zh/
+    - derive/^zh/z/
+    - derive/^c/ch/
+    - derive/^ch/c/
+    - derive/^s/sh/
+    - derive/^sh/s/
