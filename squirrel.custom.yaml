@@ -226,8 +226,8 @@ patch:
 
     # --- 浏览器 ---
     # com.google.Chrome: { ascii_mode: true, no_inline: true }
-    org.mozilla.firefox: { ascii_mode: true, no_inline: true }
-    com.microsoft.edgemac: { ascii_mode: true, no_inline: true }
+    # org.mozilla.firefox: { ascii_mode: true, no_inline: true }
+    # com.microsoft.edgemac: { ascii_mode: true, no_inline: true }
     # com.apple.Safari: { ascii_mode: true, no_inline: true }
 
     # --- 启动器 & 效率工具 ---
@@ -242,7 +242,7 @@ patch:
     com.apple.DigitalColorMeter: { ascii_mode: true }
     com.apple.ActivityMonitor: { ascii_mode: true }
     com.microsoft.Excel: { ascii_mode: true }
-    com.microsoft.Powerpoint: { ascii_mode: true }
-    com.microsoft.Word: { ascii_mode: true }
+    # com.microsoft.Powerpoint: { ascii_mode: true }
+    # com.microsoft.Word: { ascii_mode: true }
     com.tencent.WeWorkMac: { ascii_mode: true }
     org.videolan.vlc: { ascii_mode: true }
