@@ -1,6 +1,6 @@
 # GitHub Actions: 自动同步 Rime 万象方案并集成个人配置
 
-name: 自动同步 Rime 万象方案
+name: Atomic Sync
 
 on:
   schedule:
