@@ -1,68 +1,58 @@
 # Rime · 万象拼音 · 增补文件
 patch:
-  # 1. 核心设定：强制使用纯全拼方案，并更新方案信息
+  # 1. 方案设定：锁定全拼，更新信息
   set_shuru_schema: 全拼
   schema/version: "v2.2"
   schema/description: "精简强大的纯全拼方案，支持平翘舌模糊音、中英混输与手动造词。"
 
-  # 2. 依赖项：移除反查功能，保留中英混输
+  # 2. 依赖项：仅保留中英混输
   schema/dependencies:
     - wanxiang_mixedcode
 
-  # 3. 开关菜单：精简为高频选项，并设定默认状态
+  # 3. 开关设定：精简并优化开关
   switches:
-    - name: ascii_mode # 中英输入状态
+    - name: ascii_mode
       states: [中文, 英文]
-      abbrev: [🈲, 🅰]
+      abbrev: [🀄, 🅰]
 
-    - name: ascii_punct # 中英标点
+    - name: ascii_punct
       states: [中文标点, 英文标点]
-      abbrev: ["。", "`"] # 中文逗号，英文逗号，差异明显
+      abbrev: [，。, a.]
 
-    - name: full_shape # 全角、半角
+    - name: full_shape
       states: [半角, 全角]
-      abbrev: [▏, ▉] # 细竖线 vs 宽实线，宽度区别明显
+      abbrev: [半, 全]
 
-    - name: emoji # 表情开关
+    - name: emoji
       states: [表情关, 表情开]
-      abbrev: [😀, 😎]
-      reset: 1
+      abbrev: [😐, 😎]
 
-    - name: chinese_english # 翻译滤镜
+    - name: chinese_english
       states: [翻译关, 翻译开]
-      abbrev: [🔇, 🌐]
+      abbrev: [原, 🌐]
 
-    # - options: [ raw_input, tone_display, full_pinyin ]  # 编码/拼音显示方式
-    #   states: [原编码, 有声调, 无声调]
-    #   abbrev: [🔡, á, ā]
-
-    # - options: [ s2s, s2t, s2hk, s2tw ]  # 简繁转换组
-    #   states: [简体, 通繁, 港繁, 臺繁]
-    #   abbrev: [🀄, 繁, 港, 台]
-    - options: [s2s, s2t] # 简繁转换组
+    - options: [s2s, s2t]
       states: [简体, 繁体]
-      abbrev: [🀄, 繁]
+      abbrev: [简, 繁]
 
-    - name: tone_hint # 读音提示
+    - name: tone_hint
       states: [读音关, 读音开]
-      abbrev: [📴, 🔈]
+      abbrev: [A, Ā]
 
-    - name: super_tips # 实时提示
+    - name: super_tips
       states: [提示关, 提示开]
       abbrev: [📭, 💡]
-      reset: 1
 
-    - name: prediction # 预测候选
+    - name: prediction
       states: [预测关, 预测开]
       abbrev: [🚫, 🔮]
-      reset: 1
 
-    - name: search_single_char # 单字优先
+    - name: search_single_char
       states: [正常, 单字]
-      abbrev: [📘, 🔤]
+      abbrev: [词, 字]
       reset: 1
 
-  # 4.1 引擎精简：覆写所有列表，确保纯净
+  # 4. 引擎：覆写核心组件，确保纯净
   engine/processors:
     - predictor
     - lua_processor@*select_character
@@ -82,7 +72,6 @@ patch:
     - navigator
     - express_editor
 
-  # 4.2 精简 translators
   engine/translators:
     - predict_translator
     - punct_translator
@@ -100,7 +89,6 @@ patch:
     - script_translator@user_dict_set
     - lua_translator@*force_gc
 
-  # 4.3 精简 filters
   engine/filters:
     - lua_filter@*super_sequence*F
     - lua_filter@*autocap_filter
@@ -112,7 +100,6 @@ patch:
     - lua_filter@*text_formatting
     - uniquifier
 
-  # 5 精简 segmentors
   engine/segmentors:
     - ascii_segmentor
     - matcher
@@ -121,9 +108,9 @@ patch:
     - punct_segmentor
     - fallback_segmentor
 
-  # 6. 功能增强：为全拼方案追加平翘舌模糊音规则
+  # 5. 模糊音：添加平翘舌规则
   speller/algebra/+:
-    # 平翘舌模糊音 z<=>zh, c<=>ch, s<=>sh
+    # z <=> zh, c <=> ch, s <=> sh
     - derive/^z/zh/
     - derive/^zh/z/
     - derive/^c/ch/
@@ -131,7 +118,7 @@ patch:
     - derive/^s/sh/
     - derive/^sh/s/
 
-  # 7. 全局清理：通过置空(null)来禁用不再使用的模块与所有双拼方案
+  # 6. 全局禁用：移除闲置模块与双拼方案
   wanxiang_reverse: null
   radical_reverse_lookup: null
   s2hk: null
@@ -148,7 +135,7 @@ patch:
   拼音加加: null
   乱序17: null
 
-  # 8. 快捷键与触发符：覆写列表，移除闲置功能
+  # 7. 按键绑定：自定义触发符与快捷键
   recognizer/patterns:
     punct: "^/([0-9]|10|[A-Za-z]+)$"
     unicode: "^U[a-f0-9]+"
