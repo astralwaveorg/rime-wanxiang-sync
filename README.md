@@ -1,8 +1,10 @@
 # Rime 万象 | 自动同步与个人配置方案
 
-[![CI/CD Status](https://github.com/astralwaveio/rime-wanxiang-sync/actions/workflows/auto-sync-wanxiang.yml/badge.svg)](https://github.com/astralwaveio/rime-wanxiang-sync/actions/workflows/auto-sync.yml)
+[![CI/CD Status](https://github.com/astralwaveio/rime-wanxiang-sync/actions/workflows/auto-sync-wanxiang.yml/badge.svg)](https://github.com/astralwaveio/rime-wanxiang-sync/actions/workflows/auto-sync-wanxiang.yml)
 [![Latest Release](https://img.shields.io/github/v/release/astralwaveio/rime-wanxiang-sync?display_name=tag&sort=semver&color=blue)](https://github.com/astralwaveio/rime-wanxiang-sync/releases/latest)
-[![Last Commit](https://img.shields.io/github/last-commit/astralwaveio/rime-wanxiang-sync)](https://github.com/astralwaveio/rime-wanxiang-sync/commits/main)
+[![Last Commit](https://img.shields.io/github/last-commit/astralwaveio/rime-wanxiang-sync/main)](https://github.com/astralwaveio/rime-wanxiang-sync/commits/main)
+[![Stars](https://img.shields.io/github/stars/astralwaveio/rime-wanxiang-sync?style=social)](https://github.com/astralwaveio/rime-wanxiang-sync/stargazers)
+[![Issues](https://img.shields.io/github/issues/astralwaveio/rime-wanxiang-sync)](https://github.com/astralwaveio/rime-wanxiang-sync/issues)
 
 本项目是一个自动化的 Rime 输入法配置仓库，旨在解决以下痛点：
 1.  **保持更新**：自动同步上游优秀 Rime 方案（[amzxyz/rime_wanxiang](https://github.com/amzxyz/rime_wanxiang)）的最新版本。
