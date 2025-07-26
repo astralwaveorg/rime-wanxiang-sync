@@ -4,16 +4,20 @@ name: 自动同步 Rime 万象方案
 
 on:
   schedule:
-    # 每隔一天在 UTC 19:20 (北京时间 3:20) 运行
-    - cron: '20 19 */2 * *'
+    # 每隔一天在 UTC 19:20 (北京时间 4:20)
+    - cron: '20 20 */2 * *'
 
-  workflow_dispatch: # 允许手动触发
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
 
 jobs:
   sync-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 赋予提交代码和创建 Release 的权限
+      contents: write
 
     steps:
       - name: 🚚 检出代码
@@ -42,7 +46,6 @@ jobs:
 
       - name: 📥 下载并解压上游方案
         run: |
-          # 使用一个固定的临时目录路径
           TEMP_DIR="/tmp/rime_sync"
           mkdir -p ${TEMP_DIR}/source
 
@@ -55,17 +58,20 @@ jobs:
 
       - name: 🔄 同步上游文件
         run: |
-          # 直接引用上一步中使用的相同临时目录路径
           SOURCE_DIR="/tmp/rime_sync/source"
 
-          echo "⏳ 正在同步文件至仓库..."
+          echo "⏳ 正在同步文件至仓库，并排除指定文件和目录..."
           rsync -av --delete \
             --exclude '.git/' \
             --exclude '.github/' \
             --exclude 'custom/' \
+            --exclude 'bin/' \
             --exclude 'custom_phrase.txt' \
             --exclude 'README.md' \
             --exclude '.gitignore' \
+            --exclude '简纯.trime.yaml' \
+            --exclude 'wanxiang_reverse.schema.yaml' \
+            --exclude 'wanxiang_reverse.dict.yaml' \
             "${SOURCE_DIR}/" "./"
           echo "✅ 上游文件同步完成。"
 
@@ -73,8 +79,6 @@ jobs:
         run: |
           echo "📂 正在从 'custom' 目录完整复制个人配置..."
           if [ -d "custom" ]; then
-            # 使用 -a (archive) 模式递归复制所有内容（文件、子目录、软链接等）
-            # `custom/.` 表示复制 custom 目录的 *内容*，而非目录本身
             cp -a custom/. ./
             echo "✅ 个人配置复制完成。"
           else
@@ -84,11 +88,11 @@ jobs:
       - name: ✨ 提交并发布新版本
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TZ: Asia/Shanghai
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # 检查是否有文件变更
           if [[ -z $(git status --porcelain) ]]; then
             echo "👍 文件已是最新，无需操作。"
             exit 0
@@ -102,11 +106,11 @@ jobs:
           echo "🚀 正在推送至 main 分支..."
           git push --force
 
-          NEW_TAG=$(date +v%y.%m.%d)
-          echo "🏷️  生成新标签: ${NEW_TAG}"
+          # 版本号格式：v年月.日-时分 (北京时间)，例如 v25.07.27-1530
+          NEW_TAG=$(date +v%y.%m.%d-%H%M)
+          echo "🏷️  生成新标签 (北京时间): ${NEW_TAG}"
 
           echo "📦 正在打包 Release (已过滤指定文件)..."
-          # 打包时，排除 .git, custom 目录, 以及指定的几个配置文件
           zip -qr rime.zip . -x ".git/*" -x "custom/*" -x "README.md" -x ".gitignore" -x "CHANGELOG.md"
 
           echo "🚀 正在创建 GitHub Release..."
