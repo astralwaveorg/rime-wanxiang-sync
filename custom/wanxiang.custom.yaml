@@ -52,7 +52,7 @@ patch:
       abbrev: [词, 字]
       reset: 1
 
-  # 4. 引擎：覆写核心组件，确保纯净
+  # 4. 引擎：覆写核心组件
   engine/processors:
     - predictor
     - lua_processor@*select_character
