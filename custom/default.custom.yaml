@@ -1,10 +1,17 @@
 # Rime 默认配置增补文件
 patch:
-  menu:
-    placement: cursor # 关键：使候选菜单出现在光标处
+  # 界面：候选菜单跟随光标，而非固定在窗口角落
+  menu/placement: cursor
 
+  # 按键：让 Caps Lock 键的行为回归传统
+  # true - 使其仅切换字母大小写，不切换中英文输入模式
   ascii_composer/good_old_caps_lock: true
+  # clear - 按下 Caps Lock 键时，清空已输入的编码
   ascii_composer/switch_key/Caps_Lock: clear
+
+  # 按键：按下 Shift 键直接上屏已输入的编码（中英混输核心）
   ascii_composer/switch_key/Shift_L: commit_code
   ascii_composer/switch_key/Shift_R: commit_code
+
+  # 界面：自定义候选项的数字标签样式 (例如 1. 2. 3.)
   menu/alternative_select_labels: [1., 2., 3., 4., 5., 6.]

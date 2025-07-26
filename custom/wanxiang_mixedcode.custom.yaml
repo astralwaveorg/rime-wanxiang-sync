@@ -1,8 +1,13 @@
+# Rime · 万象：混合编码 · 增补文件
 patch:
+  # 清除默认方案，确保此文件仅作为补丁生效
   set_shuru_schema: null
+
+  # 核心：引入混合编码的全拼拼写规则
   speller/algebra:
     __include: wanxiang_mixedcode.schema:/全拼
 
+  # 清理：禁用所有内置的双拼方案
   自然码: null
   小鹤双拼: null
   微软双拼: null

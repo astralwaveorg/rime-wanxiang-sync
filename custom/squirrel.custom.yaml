@@ -1,12 +1,16 @@
-# 鼠须管配置增补文件
+# Rime · 鼠须管配置 · 增补文件
 patch:
+  # 1. 全局样式：设定亮/暗模式下的默认主题
   style/color_scheme: gruvbox_light
   style/color_scheme_dark: gruvbox_dark
+
+  # 2. 外观设定：候选项横排、输入码内嵌显示
   style/horizontal: true
   style/inline_preedit: true
-  style/preedit_type: composition
-  style/candidate_cursor: box # 或 box、highlight、dot、none
+  style/preedit_type: composition # 使用系统原生 composition 模式，兼容性更好
+  style/candidate_cursor: box # 候选项光标样式 (可选: box, highlight, dot)
 
+  # 3. 色彩主题库：自定义多个主题，供上方调用
   preset_color_schemes:
     # --- Group 1: macOS Native ---
     macos_native_light:
@@ -106,7 +110,7 @@ patch:
       hilited_candidate_label_color: 0xFFFFFF
       hilited_comment_text_color: 0x999999
 
-    # --- Group 3: Gruvbox ---
+    # --- Group 3: Gruvbox (Personal Favorite) ---
     gruvbox_light:
       name: "Gruvbox / Light"
       author: Q
@@ -123,7 +127,7 @@ patch:
       text_color: 0x6a9d68
 
     gruvbox_dark:
-      name: "Gruvbox / Dark" # 新的、優雅的版本
+      name: "Gruvbox / Dark" # 优雅的精调版本
       author: "Gemini (Refined)"
       font_face: "PingFangSC"
       font_point: 16
@@ -131,17 +135,17 @@ patch:
       corner_radius: 5
       candidate_list_layout: linear
       candidate_format: "%c %@ "
-      back_color: 0x282828 # 基底: 溫暖的深灰色背景 (bg0)
-      text_color: 0xebdbb2 # 輸入碼: 使用主前景色，視覺連貫 (fg)
-      candidate_text_color: 0xebdbb2 # 候補文字: 清晰柔和的主前景色 (fg)
-      comment_text_color: 0x928374 # 註解/序號: 低調的輔助灰色 (gray)
-      label_color: 0x928374 #
-      hilited_candidate_back_color: 0x3c3836 # 高亮背景: 使用亮一級的灰色， subtle & elegant (bg1)
-      hilited_candidate_text_color: 0xfabd2f # 高亮文字: 使用標誌性亮黃色作為點綴 (yellow)
-      hilited_candidate_label_color: 0xebdbb2 # 高亮序號: 提亮至主前景色，建立層次
-      hilited_comment_text_color: 0xebdbb2 # 高亮註解: 同上
+      back_color: 0x282828 # 基底: 温和的深灰色 (bg0)
+      text_color: 0xebdbb2 # 输入码: 主前景色，视觉连贯 (fg)
+      candidate_text_color: 0xebdbb2 # 候选项: 主前景色，清晰柔和 (fg)
+      comment_text_color: 0x928374 # 注释/序号: 低调的辅助灰色 (gray)
+      label_color: 0x928374 # (同上)
+      hilited_candidate_back_color: 0x3c3836 # 高亮背景: 亮一级灰色，优雅微妙 (bg1)
+      hilited_candidate_text_color: 0xfabd2f # 高亮文字: 标志性的亮黄色 (yellow)
+      hilited_candidate_label_color: 0xebdbb2 # 高亮序号: 提亮至主色，建立层次
+      hilited_comment_text_color: 0xebdbb2 # 高亮注释: (同上)
 
-    # Nullify all other themes to hide them from the list
+    # --- 主题清理：禁用所有内置主题，保持列表纯净 ---
     native: null
     aqua: null
     azure: null
@@ -191,91 +195,46 @@ patch:
     phub: null
     black_moqi: null
 
-  # App 启动时将默认进入英文输入模式，提高效率。
+  # 4. 应用设定：为特定 App 预设状态，提升效率
   app_options:
-    # ==== 系统工具 ====
-    com.apple.Terminal:
-      ascii_mode: true
-      no_inline: true
-    com.apple.Console:
-      ascii_mode: true
-    com.apple.DigitalColorMeter:
-      ascii_mode: true
-    com.apple.ScriptEditor2:
-      ascii_mode: true
-    com.apple.Spotlight:
-      ascii_mode: true
-      no_inline: true
-    com.apple.ActivityMonitor:
-      ascii_mode: true
-    com.google.Chrome:
-      ascii_mode: true
-      no_inline: true
-    org.mozilla.firefox:
-      ascii_mode: true
-      no_inline: true
-    com.microsoft.edgemac:
-      ascii_mode: true
-      no_inline: true
-    com.apple.Safari:
-      ascii_mode: true
-      no_inline: true
-    com.googlecode.iterm2:
-      ascii_mode: true
-      no_inline: true
-    io.alacritty:
-      ascii_mode: true
-      no_inline: true
-    com.jetbrains.intellij.ce:
-      ascii_mode: true
-      no_inline: true
-    com.jetbrains.intellij:
-      ascii_mode: true
-      no_inline: true
-    org.goland.GoLand:
-      ascii_mode: true
-      no_inline: true
-    com.jetbrains.pycharm:
-      ascii_mode: true
-      no_inline: true
-    com.microsoft.VSCode:
-      ascii_mode: true
-      no_inline: true
-    com.visualstudio.code.oss:
-      ascii_mode: true
-      no_inline: true
-    com.sublimetext.4:
-      ascii_mode: true
-      no_inline: true
-    org.vim.MacVim:
-      ascii_mode: true
-      no_inline: true
-      vim_mode: true
-    com.github.atom:
-      ascii_mode: true
-      no_inline: true
-    com.barebones.textwrangler:
-      ascii_mode: true
-      no_inline: true
-    com.postmanlabs.mac:
-      ascii_mode: true
-    org.python.IDLE:
-      ascii_mode: true
-    com.microsoft.Excel:
-      ascii_mode: true
-    com.microsoft.Powerpoint:
-      ascii_mode: true
-    com.microsoft.Word:
-      ascii_mode: true
-    md.obsidian:
-      ascii_mode: true
-    com.tencent.WeWorkMac:
-      ascii_mode: true
-    com.apple.dt.Xcode:
-      ascii_mode: true
-    com.runningwithcrayons.Alfred:
-      ascii_mode: true
-    com.blacktree.Quicksilver:
-      ascii_mode: true
-    org.videolan.vlc:
-      ascii_mode: true
+    # --- 终端 & Shell ---
+    com.apple.Terminal: { ascii_mode: true, no_inline: true }
+    com.googlecode.iterm2: { ascii_mode: true, no_inline: true }
+    io.alacritty: { ascii_mode: true, no_inline: true }
+    org.vim.MacVim: { ascii_mode: true, no_inline: true, vim_mode: true }
+
+    # --- IDE & 代码编辑器 ---
+    com.jetbrains.intellij.ce: { ascii_mode: true, no_inline: true }
+    com.jetbrains.intellij: { ascii_mode: true, no_inline: true }
+    org.goland.GoLand: { ascii_mode: true, no_inline: true }
+    com.jetbrains.pycharm: { ascii_mode: true, no_inline: true }
+    com.microsoft.VSCode: { ascii_mode: true, no_inline: true }
+    com.visualstudio.code.oss: { ascii_mode: true, no_inline: true }
+    com.sublimetext.4: { ascii_mode: true, no_inline: true }
+    com.github.atom: { ascii_mode: true, no_inline: true }
+    com.apple.dt.Xcode: { ascii_mode: true }
+    com.apple.ScriptEditor2: { ascii_mode: true }
+    org.python.IDLE: { ascii_mode: true }
+
+    # --- 浏览器 ---
+    com.google.Chrome: { ascii_mode: true, no_inline: true }
+    org.mozilla.firefox: { ascii_mode: true, no_inline: true }
+    com.microsoft.edgemac: { ascii_mode: true, no_inline: true }
+    com.apple.Safari: { ascii_mode: true, no_inline: true }
+
+    # --- 启动器 & 效率工具 ---
+    com.apple.Spotlight: { ascii_mode: true, no_inline: true }
+    com.runningwithcrayons.Alfred: { ascii_mode: true }
+    com.blacktree.Quicksilver: { ascii_mode: true }
+    com.postmanlabs.mac: { ascii_mode: true }
+    md.obsidian: { ascii_mode: true }
+
+    # --- 系统及其他 ---
+    com.apple.Console: { ascii_mode: true }
+    com.apple.DigitalColorMeter: { ascii_mode: true }
+    com.apple.ActivityMonitor: { ascii_mode: true }
+    com.microsoft.Excel: { ascii_mode: true }
+    com.microsoft.Powerpoint: { ascii_mode: true }
+    com.microsoft.Word: { ascii_mode: true }
+    com.tencent.WeWorkMac: { ascii_mode: true }
+    org.videolan.vlc: { ascii_mode: true }
