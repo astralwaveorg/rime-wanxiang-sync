@@ -5,16 +5,19 @@ patch:
   style/color_scheme_dark: gruvbox_dark
 
   # 2. 外观设定：候选项横排、输入码内嵌显示
-  style/horizontal: true
   style/inline_preedit: true
-  style/preedit_type: composition # 使用系统原生 composition 模式，兼容性更好
-  style/candidate_cursor: box # 候选项光标样式 (可选: box, highlight, dot)
+  style/inline_candidate: false
+  style/preedit_type: composition
+  style/candidate_cursor: box
+  style/horizontal: true
 
   # 3. 色彩主题库：自定义多个主题，供上方调用
   preset_color_schemes:
     # --- Group 1: macOS Native ---
     macos_native_light:
       name: "macOS / 原生亮色"
+      candidate_list_layout: linear
+      inline_preedit: true
       candidate_format: "%c %@ "
       corner_radius: 5
       hilited_corner_radius: 5
@@ -89,6 +92,8 @@ patch:
 
     macos_modern_dark:
       name: "macOS / 現代暗色"
+      candidate_list_layout: linear
+      inline_preedit: true
       candidate_format: "%c %@ "
       corner_radius: 5
       hilited_corner_radius: 5
@@ -110,10 +115,12 @@ patch:
       hilited_candidate_label_color: 0xFFFFFF
       hilited_comment_text_color: 0x999999
 
-    # --- Group 3: Gruvbox (Personal Favorite) ---
+    # --- Group 3: Gruvbox ---
     gruvbox_light:
       name: "Gruvbox / Light"
-      author: Q
+      author: Astral
+      candidate_list_layout: linear
+      inline_preedit: true
       corner_radius: 5
       back_color: 0xc7f1fb
       border_color: 0xb2dbeb
@@ -127,23 +134,24 @@ patch:
       text_color: 0x6a9d68
 
     gruvbox_dark:
-      name: "Gruvbox / Dark" # 优雅的精调版本
+      name: "Gruvbox / Dark"
       author: "Gemini (Refined)"
+      candidate_list_layout: linear
+      inline_preedit: true
       font_face: "PingFangSC"
       font_point: 16
       label_font_point: 14
       corner_radius: 5
-      candidate_list_layout: linear
       candidate_format: "%c %@ "
-      back_color: 0x282828 # 基底: 温和的深灰色 (bg0)
-      text_color: 0xebdbb2 # 输入码: 主前景色，视觉连贯 (fg)
-      candidate_text_color: 0xebdbb2 # 候选项: 主前景色，清晰柔和 (fg)
-      comment_text_color: 0x928374 # 注释/序号: 低调的辅助灰色 (gray)
-      label_color: 0x928374 # (同上)
-      hilited_candidate_back_color: 0x3c3836 # 高亮背景: 亮一级灰色，优雅微妙 (bg1)
-      hilited_candidate_text_color: 0xfabd2f # 高亮文字: 标志性的亮黄色 (yellow)
-      hilited_candidate_label_color: 0xebdbb2 # 高亮序号: 提亮至主色，建立层次
-      hilited_comment_text_color: 0xebdbb2 # 高亮注释: (同上)
+      back_color: 0x282828
+      text_color: 0xebdbb2
+      candidate_text_color: 0xebdbb2
+      comment_text_color: 0x928374
+      label_color: 0x928374
+      hilited_candidate_back_color: 0x3c3836
+      hilited_candidate_text_color: 0xfabd2f
+      hilited_candidate_label_color: 0xebdbb2
+      hilited_comment_text_color: 0xebdbb2
 
     # --- 主题清理：禁用所有内置主题，保持列表纯净 ---
     native: null
@@ -217,10 +225,10 @@ patch:
     org.python.IDLE: { ascii_mode: true }
 
     # --- 浏览器 ---
-    com.google.Chrome: { ascii_mode: true, no_inline: true }
+    # com.google.Chrome: { ascii_mode: true, no_inline: true }
     org.mozilla.firefox: { ascii_mode: true, no_inline: true }
     com.microsoft.edgemac: { ascii_mode: true, no_inline: true }
-    com.apple.Safari: { ascii_mode: true, no_inline: true }
+    # com.apple.Safari: { ascii_mode: true, no_inline: true }
 
     # --- 启动器 & 效率工具 ---
     com.apple.Spotlight: { ascii_mode: true, no_inline: true }
