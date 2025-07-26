@@ -4,8 +4,8 @@ name: Atomic Sync
 
 on:
   schedule:
-    # 每隔一天在 UTC 19:20 (北京时间 4:20)
-    - cron: '20 20 */2 * *'
+    # 北京时间每天凌晨 4:45 运行
+    - cron: '45 20 * * *'
 
   push:
     branches:
