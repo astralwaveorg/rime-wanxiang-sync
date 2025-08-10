@@ -3461,7 +3461,7 @@ preset_keyboards:
         }
       - { click: 'i', long_click: '*', swipe_down: 8, __include: styl/key }
       - { click: 'o', long_click: '"', swipe_down: 9, __include: styl/key }
-      - { click: 'p', long_click: "danyinhao", __include: styl/key, swipe_down: zhiding, hint: '置顶' }
+      - { click: 'p', long_click: "danyinhao", __include: styl/key, swipe_down: top1, hint: '置顶' }
       # 第 2 行
       - { width: 5 }
       - { click: 'a', long_click: select_all, __include: styl/key }

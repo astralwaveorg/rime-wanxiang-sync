@@ -1,5 +1,43 @@
 # Changelog
 
+## [11.0.0](https://github.com/amzxyz/rime_wanxiang/compare/v10.1.0...v11.0.0) (2025-08-10)
+
+
+### 🐛 Bug 修复
+
+* 完善配置 ([03c81d4](https://github.com/amzxyz/rime_wanxiang/commit/03c81d4cb634b47990bb54f0f411110340c54e41))
+
+
+### 💅 重构
+
+* 移除jdh辅助码预设 ([92b7cf3](https://github.com/amzxyz/rime_wanxiang/commit/92b7cf33571c941b823aae64cbe71114c4e13088))
+
+
+### 🏡 杂项
+
+* release 11.0.0 ([8c51408](https://github.com/amzxyz/rime_wanxiang/commit/8c5140883bb13a0e473e9f967014d38b047518b0))
+
+## [10.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v10.1.0...v10.1.0) (2025-08-10)
+### ✨ 新特性
+
+* **sequence:** 手动排序支持绑定自定义快捷键 ([5879171](https://github.com/amzxyz/rime_wanxiang/commit/5879171f5b4fd7e21ce5f45509f71e8aed9a474e))
+* 调整同文皮肤 ([e0bea09](https://github.com/amzxyz/rime_wanxiang/commit/e0bea0912ef0d7f75ca402c3c8d8d8bf7b2a865c))
+
+
+### 📚 词库更新
+
+* 修正忒字读音 ([b9e0435](https://github.com/amzxyz/rime_wanxiang/commit/b9e04351bea30ad60701a74d56ffe81cc96a6bd1))
+* 修正部分读音 ([ad379b1](https://github.com/amzxyz/rime_wanxiang/commit/ad379b12ed4b98c943c30142516679530ab603de))
+* 删减无用词条 ([59875d3](https://github.com/amzxyz/rime_wanxiang/commit/59875d3f24b19f6011322fc20d21b8d809a83f20))
+* 删减词条 ([078f9bf](https://github.com/amzxyz/rime_wanxiang/commit/078f9bf31b31bf08b00f482c3233d961331ccbff))
+* 增加x也没x过 ([9a8730a](https://github.com/amzxyz/rime_wanxiang/commit/9a8730a67b73486686d8dfe3ba4449bb0b2bf874))
+
+
+### 🤖 持续集成
+
+* fix ci release note use google/release-please ([48ea3aa](https://github.com/amzxyz/rime_wanxiang/commit/48ea3aa09d00a7ec0ff99716bfb92be41b8af5be))
+* 打包方案时忽略 release-please 配置 ([4b64314](https://github.com/amzxyz/rime_wanxiang/commit/4b6431470aa1df4823824c74da4cc877047d9002))
+
 ## [10.1.0](https://github.com/amzxyz/rime_wanxiang/compare/v10.0.10...v10.1.0) (2025-08-09)
 
 
