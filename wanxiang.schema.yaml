@@ -62,7 +62,8 @@ engine:
     - lua_processor@*super_sequence*P           #手动排序，高亮候选 ctrl+j左移动 ctrl+k 右移动 ctrl+l 移除位移  ctrl+p 置顶
     - lua_processor@*limit_repeated             #用于限制最大候选长度以及最大重复输入声母编码长度，避免性能异常
     - lua_processor@*backspace_limit            #防止连续 Backspace 在编码为空时删除已上屏内容
-    - lua_processor@*userdb_sync_delete         #危险操作：通过输入 /del 触发,用于清理自定义同步目录下txt用户词典里被标记c<0的词条，操作步骤：必须先同步、再执行/del、再去部署刷新状态、再去同步回收词典，完成动作。
+    - lua_processor@*typo_correcter             #基于编码策略的按键纠错,可与转写法共用,能跨越单字编码到词组级别,补齐转写方式短板
+    - lua_processor@*userdb_sync_delete         #⚠️危险操作：通过输入 /del 触发,用于清理自定义同步目录下txt用户词典里被标记c<0的词条，操作步骤：必须先同步、再执行/del、再去部署刷新状态、再去同步回收词典，完成动作。
     - ascii_composer                            #处理英文模式及中英文切换
     - recognizer                                #与 matcher 搭配，处理符合特定规则的输入码，如网址、反查等 tags
     - key_binder                                #在特定条件下将按键绑定到其他按键，如重定义逗号、句号为候选翻页、开关快捷键等
@@ -396,6 +397,7 @@ speller:
 
 全拼:
   __append:
+    - xform/Ⅰ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -441,6 +443,7 @@ speller:
     - derive/([tl])eng$/$1en/ # ten → teng
 自然码: 
   __append:
+    - xform/Ⅱ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -508,6 +511,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 自然龙:      #原作者项目地址： https://github.com/rimeinn/rime-zrlong
   __append:
+    - xform/Ⅺ//  #用于Lua判断输入类型的标记
     - xform/^(ā|á|ǎ|à)([ioun])$/a$1$2/
     - xform/^(ō|ó|ǒ|ò)([ioun])$/o$1$2/
     - xform/^(ē|é|ě|è)([ioun])$/e$1$2/
@@ -570,6 +574,7 @@ speller:
     - xlit/QWERTYUIOPASDFGHMJCKLZXVBN/qwertyuiopasdfghmjcklzxvbn/
 汉心龙:    #原作者项目地址： https://hanxinma.gitlab.io/longma/
   __append:
+    - xform/Ⅻ//  #用于Lua判断输入类型的标记
     - xform/^(a|ā|á|ǎ|à)/Q$1/
     - xform/^(o|ō|ó|ǒ|ò)/R$1/
     - xform/^(e|ē|é|ě|è)/B$1/
@@ -643,6 +648,7 @@ speller:
 
 小鹤双拼: 
   __append:
+    - xform/Ⅲ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -709,6 +715,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 搜狗双拼: 
   __append:
+    - xform/Ⅴ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -776,6 +783,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 微软双拼: 
   __append:
+    - xform/Ⅳ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -844,6 +852,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 智能ABC:
   __append:
+    - xform/Ⅵ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -907,6 +916,7 @@ speller:
     #- abbrev/^([a-z]).+$/$1/   #简拼
 紫光双拼:
   __append:
+    - xform/Ⅶ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -972,6 +982,7 @@ speller:
 
 拼音加加:
   __append:
+    - xform/Ⅷ//  #用于Lua判断输入类型的标记
     - xform/^([a-z]+)$/$1④/
     - xform/^(.*)ā(.*)$/$1a$2①/
     - xform/^(.*)á(.*)$/$1a$2②/
@@ -1035,6 +1046,7 @@ speller:
     - xlit/ⓆⓌⓇⓉⓎⓊⒾⓄⓅⓈⒹⒻⒼⒽⓂⒿⒸⓀⓁⓏⓍⓋⒷⓃ/qwrtyuiopsdfghmjcklzxvbn/
 乱序17:  
   __append:
+    - xform/Ⅹ//  #用于Lua判断输入类型的标记
     - xlit/āáǎàōóǒòēéěèīíǐìūúǔùǖǘǚǜü/aaaaooooeeeeiiiiuuuuvvvvv/
     - xform/^ng$/eng/
     - xform/ńg|ňg|ǹg/eng/
@@ -1086,7 +1098,41 @@ speller:
     - xform/u$/Ⓓ/
     - xform/v$/Ⓧ/
     - xlit/ⓆⓌⒺⓇⓉⓎⓄⓅⒶⓈⒹⒻⒼⒽⒿⓀⓁⓏⓍⒸⓋⒷⓃⓂ/qwertyopasdfghjklzxcvbnm/
-
+模糊音: 
+  __append:
+    # n - l
+    - derive/^l/n
+    - derive/^n/l
+    # r - y     开头
+    - derive/^y/r
+    - derive/^r/y
+    # h - f     开头
+    - derive/^h/f
+    - derive/^f/h
+    # r - l     开头
+    - derive/^r/l
+    - derive/^l/r
+    # k - g     开头
+    - derive/^k/g
+    - derive/^g/k
+    # an - ang
+    - derive/([ui]?)([āáǎàa])ng(.*)$/$1$2n$3
+    - derive/([ui]?)([āáǎàa])n(.*)$/$1$2ng$3
+    # en - eng
+    - derive/([ēéěèe])ng(.*)$/$1n$2
+    - derive/([ēéěèe])n(.*)$/$1ng$2
+    # in - ing
+    - derive/([īíǐìi])ng(.*)$/$1n$2
+    - derive/([īíǐìi])n(.*)$/$1ng$2
+    # c - ch
+    - derive/^c([^h]*)/ch$1
+    - derive/^ch/c
+    # z - zh
+    - derive/^z([^h]*)/zh$1
+    - derive/^zh/z
+    # s - sh
+    - derive/^s([^h]*)/sh$1
+    - derive/^sh/s
 # 自定义词典 
 user_dict_set:
   dictionary: wanxiang
