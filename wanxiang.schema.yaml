@@ -116,7 +116,13 @@ engine:
     - lua_filter@*text_formatting                   #给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s
     - uniquifier                                    # 去重
 
-#shijian:仅仅作为提示使用，编码已经写死，引导适应性更高，如有需求lua中修改
+# Tips 配置项
+tips:
+  # 禁用的 tips 类型，初始化 tips 数据库的时候会直接忽略相关规则，修改部署后生效
+  # 可选项为：偏旁，符号，化学式，时间，符号，组字，翻译，表情，货币，车牌
+  disabled_types: []
+
+#shijian:仅仅作为提示使用，编码已经写死，引导键可以在key_binder下修改前缀
 #时间：osj 或者 /sj
 #日期：orq 或者 /rq
 #农历：onl 或者 /nl
@@ -125,7 +131,7 @@ engine:
 #节气：ojq 或者 /jq
 #日期+时间：ors 或者 /rs
 #时间戳：ott 或者 /tt
-#大写N日期：N20250315
+#大写N日期：N20250315 或者N0312不带年
 #节日：ojr 或者 /jr
 #问候模板：/day 或者 oday
 #生日信息：/sr或者osr

@@ -4,7 +4,7 @@
 local wanxiang = {}
 
 -- x-release-please-start-version
-wanxiang.version = "11.2.1"
+wanxiang.version = "11.3.0"
 -- x-release-please-end
 
 -- 全局内容
@@ -193,7 +193,7 @@ wanxiang.INPUT_METHOD_MARKERS = {
     ["Ⅳ"] = "mspy", --微软双拼
     ["Ⅴ"] = "sogou", --搜狗双拼
     ["Ⅵ"] = "abc", --智能abc双拼
-    ["Ⅶ"] = "zihuang", --紫光双拼
+    ["Ⅶ"] = "ziguang", --紫光双拼
     ["Ⅷ"] = "pyjj", --拼音加加
     ["Ⅸ"] = "gbpy", --国标双拼
     ["Ⅹ"] = "lxsq", --乱序17
