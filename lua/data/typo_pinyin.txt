@@ -1116,11 +1116,9 @@ sheij	shiej
 sheik	shiek
 sheil	shiel
 sheim	shiem
-shein	shien
 sheio	shieo
 sheip	shiep
 sheiq	shieq
-sheir	shier
 sheis	shies
 sheiw	shiew
 sheix	shiex
@@ -1128,10 +1126,8 @@ sheiy	shiey
 sheiz	shiez
 sheit	shiet
 shier	shiee
-shuang	suang
 #ch相关
 chuai	cuai
-chuang	cuang
 #zua可能存在zu ai,只对以下纠错
 zhuaj	zuaj
 zhuab	zuab
@@ -1155,7 +1151,6 @@ zhuax	zuax
 zhuay	zuay
 zhuaz	zuaz
 zhuaa	zuaa
-zhuang	zuang
 #[zsc]j+原音修正为[zsc]h
 zhe	zje
 zha	zja
@@ -1173,7 +1168,6 @@ sha	sja
 sho	sjo
 #shu	sju冲突
 #ew修正为ue横向偏移
-juea	juwa
 jueb	juwb
 jued	juwd
 juef	juwf
