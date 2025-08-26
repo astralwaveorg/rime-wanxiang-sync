@@ -22,15 +22,12 @@ jobs:
         run: |
           echo "💡 工作流已手动触发，正在准备打包..."
 
-          # 版本号格式：v年月.日-时分 (北京时间)
           NEW_TAG=$(date +v%y.%m.%d-%H%M)
           echo "🏷️  生成新标签 (北京时间): ${NEW_TAG}"
 
-          # 创建一个临时构建目录
           BUILD_DIR="/tmp/release_build"
           mkdir -p "$BUILD_DIR"
 
-          # 1. 复制核心文件到临时目录，并排除特定目录
           echo "📂 正在复制核心文件到临时目录..."
           rsync -av \
             --exclude '.git' \
@@ -41,7 +38,6 @@ jobs:
             --exclude 'CHANGELOG.md' \
             . "$BUILD_DIR"
 
-          # 2. 将个人配置（custom 目录的内容）复制到临时目录的根部
           echo "📂 正在将个人配置复制到临时目录的根部..."
           if [ -d "custom" ]; then
             cp -a custom/. "$BUILD_DIR"/
@@ -50,40 +46,33 @@ jobs:
             echo "⚠️ 'custom' 目录不存在，跳过复制。"
           fi
 
-          # --- 3. 打包标准版 rime.zip ---
           echo "📦 正在打包标准版 Release (rime.zip)..."
-          # 语法：zip [输出文件名] [源目录/]
-          # 该命令会打包 BUILD_DIR 目录下的所有内容，并将它们放在 rime.zip 的根目录，
-          # 完美避免了之前 -C 参数的错误。
           zip -9qr rime.zip "$BUILD_DIR"/
           echo "✅ 标准版 rime.zip 打包完成。"
 
-          # --- 4. 打包完整版 rime-full.tar.gz ---
           echo "📦 正在打包完整版 Release (rime-full.tar.gz)..."
           echo "⏳ 正在下载额外文件：wanxiang-lts-zh-hans.gram..."
           curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" -o "$BUILD_DIR"/wanxiang-lts-zh-hans.gram
           echo "✅ 下载完成。"
 
-          # 语法：tar -C [源目录] [源文件]...
-          # 该命令会先切换到 BUILD_DIR，然后打包其下所有内容（.），这是标准用法，
-          # 并且与之前的 zip 命令互不影响。
           tar -czvf rime-full.tar.gz -C "$BUILD_DIR" .
           echo "✅ 完整版 rime-full.tar.gz 打包完成。"
 
-          # --- 5. 清理临时目录和压缩包 ---
-          echo "🧹 正在清理临时文件..."
+          echo "🧹 正在清理临时目录..."
           rm -rf "$BUILD_DIR"
-          rm -f rime.zip rime-full.tar.gz
           echo "✅ 清理完成。"
 
-          # --- 6. 创建 Release 并上传双版本 ---
           echo "🚀 正在创建 GitHub Release 并上传双版本..."
-          # gh 命令会正确上传两个文件，notes 格式也使用 Heredoc 保证正确性
           NOTES="这是一个手动创建的发行版，包含两个压缩包：\n\n- **rime.zip**: 标准版，兼容性高，仅包含基础方案和个人配置。\n- **rime-full.tar.gz**: 完整版，压缩率更高，额外集成了 **wanxiang-lts-zh-hans.gram** 大词库。"
+
           gh release create "$NEW_TAG" \
             ./rime.zip \
             ./rime-full.tar.gz \
             --title "手动打包发行版 ${NEW_TAG}" \
-            --notes "${NOTES}"
+            --notes "$NOTES"
 
           echo "✅ 新发行版 ${NEW_TAG} 创建成功！"
+
+          echo "🧹 正在清理本地打包文件..."
+          rm -f rime.zip rime-full.tar.gz
+          echo "✅ 本地文件已清理。"
