@@ -1,8 +1,17 @@
 # RIME 默认设置 patch
 patch:
+  schema_list:
+    - schema: wanxiang
   menu/alternative_select_labels: [1., 2., 3., 4., 5., 6., 7., 8., 9.]
   switcher/caption: '⚙️ 配置'
   switcher/fold_options: false
-  ascii_composer/switch_key/Caps_Lock: 'commit_code'
+  ascii_composer/good_old_caps_lock: true
+  ascii_composer/switch_key:
+    Caps_Lock: clear
+    Shift_L: commit_code
+    Shift_R: commit_code
+    Control_L: noop
+    Control_R: noop
+    Eisu_toggle: clear
   key_binder/bindings/+:
     - { when: always, accept: Control+Shift+space, select: .next }

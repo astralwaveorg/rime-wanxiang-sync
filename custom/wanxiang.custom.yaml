@@ -11,52 +11,45 @@ patch:
   birthday_reminder/solar_birthdays: {}
 
   # 输入法
-  # 3. 开关设定：精简并优化开关
+  # 3. 开关设定
+  # 3. 开关设定（emoji 优化·直观版）
   switches:
     - name: ascii_mode
       states: [中文, 英文]
-      abbrev: [🀄, 🅰]
-
+      abbrev: [🀄, 🔤]
     - name: ascii_punct
-      states: [中文标点, 英文标点]
-      abbrev: [，。, a.]
-
+      states: [中标, 英标]
+      abbrev: [【, .]
     - name: full_shape
       states: [半角, 全角]
       abbrev: [半, 全]
-
     - name: emoji
       states: [表情关, 表情开]
-      abbrev: [😐, 😎]
-
+      abbrev: [🙂, 😎]
     - name: chinese_english
       states: [翻译关, 翻译开]
-      abbrev: [原, 🌐]
-
+      abbrev: [📄, 🌐]
     - options: [s2s, s2t]
       states: [简体, 繁体]
       abbrev: [简, 繁]
-
     - name: tone_hint
       states: [读音关, 读音开]
-      abbrev: [A, Ā]
-
+      abbrev: [🔕, 🔔]
     - name: super_tips
       states: [提示关, 提示开]
       abbrev: [📭, 💡]
       reset: 0
-
     - name: prediction
       states: [预测关, 预测开]
       abbrev: [🚫, 🔮]
-
     - name: search_single_char
       states: [正常, 单字]
-      abbrev: [词, 字]
+      abbrev: [📝, 🔤]
       reset: 0
-    - options: [raw_input, tone_display, full_pinyin]
-      states: [原编码, 有声调, 无声调]
-      reset: 1
+    - options: [raw_input, tone_display]
+      states: [原编码, 有声调]
+      abbrev: [⌨️, 🎵]
+      reset: 0
 
   # 引擎配置
   engine/translator/filters:

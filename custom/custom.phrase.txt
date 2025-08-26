@@ -1,3 +1,7 @@
-#给自定义用户词扩展一个换行:\n, 制表符：\t, 回车符：\r, 空格：\s
 吧	b	50
-静夜思\n\s\s李白\n床前明月光\n疑似地上霜\n举头望明月\n低头思故乡	jys	50
+不能	bun	50
+astral	ast	50
+astralwave	astr	50
+jonny	jo	50
+jonny6015	jon	50
+jonny0624	jonn	50
