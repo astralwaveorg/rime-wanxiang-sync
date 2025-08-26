@@ -50,9 +50,11 @@ jobs:
 
           # --- 打包 rime-full.zip ---
           echo "📦 正在打包完整版 Release (rime-full.zip)..."
+
           echo "⏳ 正在下载额外文件：wanxiang-lts-zh-hans.gram..."
           curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" -o wanxiang-lts-zh-hans.gram
           echo "✅ 下载完成。"
+
           zip -qr rime-full.zip . \
             -x ".git/*" \
             -x ".github/*" \
@@ -74,7 +76,7 @@ jobs:
           echo "🚀 正在创建 GitHub Release 并上传双版本..."
           gh release create "$NEW_TAG" \
             ./rime.zip \
-            --asset ./rime-full.zip \
+            ./rime-full.zip \
             --title "手动打包发行版 ${NEW_TAG}" \
             --notes "这是一个手动创建的发行版，包含两个压缩包：① **rime.zip**: 标准版，仅包含基础方案和个人配置。② **rime-full.zip**: 完整版，额外集成了 **wanxiang-lts-zh-hans.gram** 大词库。"
 
