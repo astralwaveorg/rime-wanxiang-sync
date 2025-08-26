@@ -26,10 +26,9 @@ jobs:
           NEW_TAG=$(date +v%y.%m.%d-%H%M)
           echo "🏷️  生成新标签 (北京时间): ${NEW_TAG}"
 
-          # --- 打包 rime.zip ---
+          # --- 1. 打包标准版 rime.zip ---
           echo "📦 正在打包标准版 Release (rime.zip)..."
 
-          # 临时复制个人配置，以便打包时包含
           if [ -d "custom" ]; then
             cp -a custom/. ./
             echo "✅ 个人配置已临时复制到根目录。"
@@ -37,8 +36,8 @@ jobs:
             echo "⚠️ 'custom' 目录不存在，将只打包上游文件。"
           fi
 
-          # 打包标准版，不包含 wanxiang-lts-zh-hans.gram 文件
-          zip -qr rime.zip . \
+          # 使用 zip 的最高压缩率 (-9)
+          zip -9qr rime.zip . \
             -x ".git/*" \
             -x ".github/*" \
             -x "custom/*" \
@@ -48,36 +47,43 @@ jobs:
 
           echo "✅ 标准版 rime.zip 打包完成。"
 
-          # --- 打包 rime-full.zip ---
-          echo "📦 正在打包完整版 Release (rime-full.zip)..."
+          # --- 2. 打包完整版 rime-full.tar.gz ---
+          echo "📦 正在打包完整版 Release (rime-full.tar.gz)..."
 
           echo "⏳ 正在下载额外文件：wanxiang-lts-zh-hans.gram..."
           curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" -o wanxiang-lts-zh-hans.gram
           echo "✅ 下载完成。"
 
-          zip -qr rime-full.zip . \
-            -x ".git/*" \
-            -x ".github/*" \
-            -x "custom/*" \
-            -x "README.md" \
-            -x ".gitignore" \
-            -x "CHANGELOG.md"
-          echo "✅ 完整版 rime-full.zip 打包完成。"
+          # 【注意】: tar 命令的排除语法与 zip 不同
+          # 此外，这里会直接将所有文件打包，包括之前创建的 rime.zip，因此需要将其排除
+          tar -czvf rime-full.tar.gz \
+            --exclude='custom' \
+            --exclude='rime.zip' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='README.md' \
+            --exclude='CHANGELOG.md' \
+            .
 
-          # --- 清理临时文件 ---
+          echo "✅ 完整版 rime-full.tar.gz 打包完成。"
+
+          # --- 3. 清理临时文件 ---
           echo "🧹 正在清理临时文件..."
           if [ -d "custom" ]; then
               find custom -type f -exec basename {} \; | xargs -I {} rm -f "{}"
           fi
           rm -f wanxiang-lts-zh-hans.gram
+          rm -f rime.zip rime-full.tar.gz
           echo "✅ 清理完成。"
 
-          # --- 创建 Release 并上传两个压缩包 ---
+          # --- 4. 创建 Release 并上传双版本 ---
           echo "🚀 正在创建 GitHub Release 并上传双版本..."
+          # gh release create 直接列出所有要上传的文件路径
+          NOTES="这是一个手动创建的发行版，包含两个压缩包：\n\n- **rime.zip**: 标准版，兼容性高，仅包含基础方案和个人配置。\n- **rime-full.tar.gz**: 完整版，压缩率更高，额外集成了 **wanxiang-lts-zh-hans.gram** 大词库。"
           gh release create "$NEW_TAG" \
             ./rime.zip \
-            ./rime-full.zip \
+            ./rime-full.tar.gz \
             --title "手动打包发行版 ${NEW_TAG}" \
-            --notes "这是一个手动创建的发行版，包含两个压缩包：① **rime.zip**: 标准版，仅包含基础方案和个人配置。② **rime-full.zip**: 完整版，额外集成了 **wanxiang-lts-zh-hans.gram** 大词库。"
+            --notes "${NOTES}"
 
           echo "✅ 新发行版 ${NEW_TAG} 创建成功！"
