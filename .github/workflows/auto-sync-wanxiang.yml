@@ -66,6 +66,7 @@ jobs:
             --exclude '.github/' \
             --exclude 'custom/' \
             --exclude 'bin/' \
+            --exclude 'custom_phrase.txt' \
             --exclude 'squirrel.yaml' \
             --exclude 'README.md' \
             --exclude '.gitignore' \
