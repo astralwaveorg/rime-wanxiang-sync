@@ -11,12 +11,12 @@
 .DocumentRevisions-V100
 
 # rime user files
+/build
+/wanxiang.userdb
 /installation.yaml
 /user.yaml
 /lua/*.userdb
 /lua/input_stats.lua
 /lua/sequence.txt
-/build
-/wanxiang.userdb
 /sync
 /userdb.db

@@ -66,25 +66,11 @@ jobs:
             --exclude '.github/' \
             --exclude 'custom/' \
             --exclude 'bin/' \
-            --exclude 'custom_phrase.txt' \
+            --exclude 'squirrel.yaml' \
             --exclude 'README.md' \
             --exclude '.gitignore' \
-            --exclude '简纯.trime.yaml' \
-            --exclude 'wanxiang_reverse.schema.yaml' \
-            --exclude 'wanxiang_reverse.dict.yaml' \
             "${SOURCE_DIR}/" "./"
           echo "✅ 上游文件同步完成。"
-
-      - name: 📂 复制个人配置
-        run: |
-          echo "📂 正在从 'custom' 目录完整复制个人配置..."
-          if [ -d "custom" ]; then
-            cp -a custom/. ./
-            echo "✅ 个人配置复制完成。"
-          else
-            echo "⚠️ 'custom' 目录不存在，跳过复制。"
-          fi
-
       - name: ✨ 提交并发布新版本
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -110,13 +96,28 @@ jobs:
           NEW_TAG=$(date +v%y.%m.%d-%H%M)
           echo "🏷️  生成新标签 (北京时间): ${NEW_TAG}"
 
-          echo "📦 正在打包 Release (已过滤指定文件)..."
-          zip -qr rime.zip . -x ".git/*" -x "custom/*" -x "README.md" -x ".gitignore" -x "CHANGELOG.md"
+          echo "📦 正在打包 Release (集成个人配置并过滤指定文件)..."
+          # 检查 custom 目录是否存在
+          if [ -d "custom" ]; then
+              cp -a custom/. ./
+              echo "✅ 个人配置已临时复制到根目录，准备打包。"
+          else
+              echo "⚠️ 'custom' 目录不存在，跳过复制，将只打包上游文件。"
+          fi
+
+          # 这里的 -x "custom/*" 保证了原始的 custom 目录不会被打包进去。
+          zip -qr rime.zip . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "custom/*" \
+            -x "README.md" \
+            -x ".gitignore" \
+            -x "CHANGELOG.md"
 
           echo "🚀 正在创建 GitHub Release..."
           gh release create "$NEW_TAG" \
             ./rime.zip \
             --title "自动同步发行版 ${NEW_TAG}" \
-            --notes "本次更新自动同步自 amzxyz/rime_wanxiang 的版本: **${{ steps.get_release.outputs.release_version }}**"
+            --notes "自动同步自 amzxyz/rime_wanxiang 的版本: **${{ steps.get_release.outputs.release_version }}**"
 
           echo "✅ 新发行版 ${NEW_TAG} 创建成功！"

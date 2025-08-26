@@ -1,0 +1,3 @@
+patch:
+  speller/algebra:
+    __include: wanxiang_reverse.schema:/全拼
