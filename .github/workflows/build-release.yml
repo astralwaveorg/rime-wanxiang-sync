@@ -26,54 +26,50 @@ jobs:
           NEW_TAG=$(date +v%y.%m.%d-%H%M)
           echo "🏷️  生成新标签 (北京时间): ${NEW_TAG}"
 
-          # --- 1. 打包标准版 rime.zip ---
-          echo "📦 正在打包标准版 Release (rime.zip)..."
+          # 创建一个临时构建目录
+          BUILD_DIR="/tmp/release_build"
+          mkdir -p "$BUILD_DIR"
 
+          # 【重要修正】：使用 rsync 将必要的文件复制到临时目录，并排除 custom 目录本身
+          echo "📂 正在复制核心文件到临时目录..."
+          rsync -av \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'custom' \
+            --exclude '.gitignore' \
+            --exclude 'README.md' \
+            --exclude 'CHANGELOG.md' \
+            . "$BUILD_DIR"
+
+          # 【重要修正】：将个人配置（custom 目录的内容）复制到临时目录的根部
+          echo "📂 正在将个人配置复制到临时目录的根部..."
           if [ -d "custom" ]; then
-            cp -a custom/. ./
-            echo "✅ 个人配置已临时复制到根目录。"
+            cp -a custom/. "$BUILD_DIR"/
+            echo "✅ 个人配置已复制到构建目录。"
           else
-            echo "⚠️ 'custom' 目录不存在，将只打包上游文件。"
+            echo "⚠️ 'custom' 目录不存在，跳过复制。"
           fi
 
-          # 使用 zip 的最高压缩率 (-9)
-          zip -9qr rime.zip . \
-            -x ".git/*" \
-            -x ".github/*" \
-            -x "custom/*" \
-            -x "README.md" \
-            -x ".gitignore" \
-            -x "CHANGELOG.md"
-
+          # --- 1. 打包标准版 rime.zip ---
+          echo "📦 正在打包标准版 Release (rime.zip)..."
+          # 在临时目录中打包，由于前期准备充分，无需排除任何文件
+          zip -9qr rime.zip -C "$BUILD_DIR" .
           echo "✅ 标准版 rime.zip 打包完成。"
 
           # --- 2. 打包完整版 rime-full.tar.gz ---
           echo "📦 正在打包完整版 Release (rime-full.tar.gz)..."
-
           echo "⏳ 正在下载额外文件：wanxiang-lts-zh-hans.gram..."
-          curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" -o wanxiang-lts-zh-hans.gram
+          # 将额外文件下载到临时目录
+          curl -L "https://github.com/amzxyz/RIME-LMDG/releases/download/LTS/wanxiang-lts-zh-hans.gram" -o "$BUILD_DIR"/wanxiang-lts-zh-hans.gram
           echo "✅ 下载完成。"
 
-          # 【注意】: tar 命令的排除语法与 zip 不同
-          # 此外，这里会直接将所有文件打包，包括之前创建的 rime.zip，因此需要将其排除
-          tar -czvf rime-full.tar.gz \
-            --exclude='custom' \
-            --exclude='rime.zip' \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='README.md' \
-            --exclude='CHANGELOG.md' \
-            .
-
+          # 在临时目录中打包，由于前期准备充分，无需排除任何文件
+          tar -czvf rime-full.tar.gz -C "$BUILD_DIR" .
           echo "✅ 完整版 rime-full.tar.gz 打包完成。"
 
-          # --- 3. 清理临时文件 ---
-          echo "🧹 正在清理临时文件..."
-          if [ -d "custom" ]; then
-              find custom -type f -exec basename {} \; | xargs -I {} rm -f "{}"
-          fi
-          rm -f wanxiang-lts-zh-hans.gram
-          rm -f rime.zip rime-full.tar.gz
+          # --- 3. 清理临时目录 ---
+          echo "🧹 正在清理临时目录..."
+          rm -rf "$BUILD_DIR"
           echo "✅ 清理完成。"
 
           # --- 4. 创建 Release 并上传双版本 ---
