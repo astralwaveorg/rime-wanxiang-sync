@@ -4,7 +4,7 @@
 local wanxiang = {}
 
 -- x-release-please-start-version
-wanxiang.version = "12.0.3"
+wanxiang.version = "12.1.1"
 -- x-release-please-end
 
 -- 全局内容
@@ -83,8 +83,6 @@ function wanxiang.is_in_radical_mode(env)
     local seg = env.engine.context.composition:back()
     return seg and (
         seg:has_tag("wanxiang_reverse")
-        --or seg:has_tag("reverse_stroke")
-        or seg:has_tag("add_user_dict")
     ) or false
 end
 
