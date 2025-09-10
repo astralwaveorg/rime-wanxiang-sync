@@ -115,7 +115,15 @@ translator:
     - derive/'([jqxy])u/'$1v/
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
-
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 自然码:
   __include: 通用派生规则
   __append:
@@ -154,6 +162,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 小鹤双拼:
   __include: 通用派生规则
   __append:
@@ -192,6 +209,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 微软双拼:
   __include: 通用派生规则
   __append:
@@ -232,6 +258,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 搜狗双拼:
   __include: 通用派生规则
   __append:
@@ -272,7 +307,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
-
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 智能ABC:
   __include: 通用派生规则
   __append:
@@ -309,7 +352,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
-
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 紫光双拼:
   __include: 通用派生规则
   __append:
@@ -347,7 +398,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
-
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 拼音加加:
   __include: 通用派生规则
   __append:
@@ -386,6 +445,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 国标双拼:
   __include: 通用派生规则
   __append:
@@ -425,6 +493,15 @@ translator:
     - xform/'|<|>//
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
   # 前 2~10 个字母大写
   #- derive/^([a-z]{2})/\U$1/
   #- derive/^([a-z]{3})/\U$1/
@@ -539,6 +616,15 @@ translator:
     # - derive/zh/v/
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/
 
 汉心龙:
   __include: 通用派生规则
@@ -624,3 +710,12 @@ translator:
     - derive/ma/pe/   # 中英文兼容,ma⇋吗,嘛
     - derive/^.+$/\L$0/
     - erase/.*[^a-zA-Z].+$/
+    - derive/^([a-z]{2})/\U$1/
+    - derive/^([a-z]{3})/\U$1/
+    - derive/^([a-z]{4})/\U$1/
+    - derive/^([a-z]{5})/\U$1/
+    - derive/^([a-z]{6})/\U$1/
+    - derive/^([a-z]{7})/\U$1/
+    - derive/^([a-z]{8})/\U$1/
+    - derive/^([a-z]{9})/\U$1/
+    - derive/^([a-z]{10})/\U$1/

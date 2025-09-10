@@ -1,5 +1,52 @@
 # Changelog
 
+## [12.2.6](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.5...v12.2.6) (2025-09-10)
+
+
+### 📚 词库更新
+
+* 词库调整 ([9abc4f5](https://github.com/amzxyz/rime_wanxiang/commit/9abc4f53668520d57a8cd9043f09e816498a5484))
+
+
+### 🐛 Bug 修复
+
+* 优化性能 ([f9d0088](https://github.com/amzxyz/rime_wanxiang/commit/f9d0088503930e51708514a229d74fce5d0358c7))
+
+## [12.2.5](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.4...v12.2.5) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 恢复错误修改的中英混输转写 ([e5a4834](https://github.com/amzxyz/rime_wanxiang/commit/e5a4834866f57884013b6b8a384ad51eed8c88d8))
+
+## [12.2.4](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.3...v12.2.4) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 次选如果已经是table则不排序 ([0692dce](https://github.com/amzxyz/rime_wanxiang/commit/0692dcebca58051767a554946ab55376d12eab90))
+
+## [12.2.3](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.2...v12.2.3) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 调整英文转写匹配全大写筛选 ([44571d9](https://github.com/amzxyz/rime_wanxiang/commit/44571d9f9b40e40cd95e93414bc7d69fccf5973e))
+
+## [12.2.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.1...v12.2.2) (2025-09-10)
+
+
+### 🐛 Bug 修复
+
+* 调整策略与输入编码一样的英文优先前置 ([a81f716](https://github.com/amzxyz/rime_wanxiang/commit/a81f7161ce3f9d1612dabbb790e2095624494b99))
+
+## [12.2.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.0...v12.2.1) (2025-09-10)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ac3af76](https://github.com/amzxyz/rime_wanxiang/commit/ac3af76c743702b8c116ccf01a69e9057de3b412))
+
 ## [12.2.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.1.1...v12.2.0) (2025-09-09)
 
 
