@@ -12,46 +12,40 @@ patch:
 
   # 开关设定
   switches:
-    - name: ascii_mode
+    - options: ascii_mode
       states: [中文, 英文]
-      abbrev: [🀄, 🔤]
-    - name: ascii_punct
-      states: [中标, 英标]
-      abbrev: [【, .]
-    - name: full_shape
-      states: [半角, 全角]
-      abbrev: [半, 全]
       reset: 0
-    - name: emoji
-      states: [表情关, 表情开]
-      abbrev: [🙂, 😎]
-      reset: 0
-    - name: chinese_english
-      states: [翻译关, 翻译开]
-      abbrev: [📄, 🌐]
+    - options: ascii_punct
+      states: [汉标, 西标]
       reset: 0
     - options: [s2s, s2t]
       states: [简体, 繁体]
-      abbrev: [简, 繁]
-      reset: 0
-    - name: tone_hint
-      states: [读音关, 读音开]
-      abbrev: [🔕, 🔔]
       reset: 0
     - name: super_tips
-      states: [提示关, 提示开]
-      abbrev: [📭, 💡]
+      states: [关提, 提示]
+      reset: 1
+    - name: emoji
+      states: [无表情, 表情开]
+      reset: 1
+    - name: full_shape
+      states: [半角, 全角]
+      reset: 0
+    - name: chinese_english
+      states: [翻译, 原码]
+      reset: 0
+    - name: tone_hint
+      states: [声调, 平调]
       reset: 0
     - name: prediction
-      states: [预测关, 预测开]
-      abbrev: [🚫, 🔮]
+      states: [直选, 预测]
     - name: search_single_char
       states: [正常, 单字]
-      abbrev: [📝, 🔤]
       reset: 0
-    - options: [raw_input, tone_display]
-      states: [原编码, 有声调]
-      abbrev: [⌨️, 🎵]
+    - name: corrector
+      states: [不纠错, 纠错开]
+      reset: 1
+    - name: [raw_input, tone_display]
+      states: [纯码, 带调]
       reset: 0
 
   # 引擎配置
