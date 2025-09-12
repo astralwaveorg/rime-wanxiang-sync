@@ -1,5 +1,40 @@
 # Changelog
 
+## [12.3.3](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.2...v12.3.3) (2025-09-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([770a71e](https://github.com/amzxyz/rime_wanxiang/commit/770a71e6fe6217c67fadb300b94e6bc031737f6a))
+
+
+### 🐛 Bug 修复
+
+* 排序数据可能包含空格 ([fc58109](https://github.com/amzxyz/rime_wanxiang/commit/fc58109b55d4664ddfa71c870787f47e3b0c3992))
+
+## [12.3.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.1...v12.3.2) (2025-09-12)
+
+
+### 🐛 Bug 修复
+
+* 恢复以前，Mac与windows逻辑不一致 ([3936b12](https://github.com/amzxyz/rime_wanxiang/commit/3936b12e5994dbcc03273f48d2a5f65d7ac8354a))
+* 恢复声调回退Lua ([1bd377e](https://github.com/amzxyz/rime_wanxiang/commit/1bd377e2a4b6e3060d8d756b331150fac0cc3c86))
+
+## [12.3.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.3.0...v12.3.1) (2025-09-12)
+
+
+### 📚 词库更新
+
+* 词库调整 ([ff101a2](https://github.com/amzxyz/rime_wanxiang/commit/ff101a2b94bd9a24f802cc5e8fe9b312e8a1856c))
+* 词库调整 ([3cdedc5](https://github.com/amzxyz/rime_wanxiang/commit/3cdedc5f1de42777df4b9693bd351e99b92fdaea))
+* 词库调整 ([f2459ee](https://github.com/amzxyz/rime_wanxiang/commit/f2459ee9751c1506ee8ae70c937371cf61a6d0c2))
+
+
+### 🐛 Bug 修复
+
+* 分号次选恢复send2 ([78fa572](https://github.com/amzxyz/rime_wanxiang/commit/78fa57269561116690f739edc599b46d9cded88d))
+* 继续完善现在完全支持副键盘不上屏，配合输入混合验证码等场景 ([ceaa212](https://github.com/amzxyz/rime_wanxiang/commit/ceaa2120f5b94bd6e5547939eb091fb561a3e00e))
+
 ## [12.3.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.2.7...v12.3.0) (2025-09-11)
 
 
