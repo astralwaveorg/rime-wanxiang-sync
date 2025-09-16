@@ -221,17 +221,3 @@ schema,default,weasel,squirrel
 **翻译模式：**  输入状态按下Ctrl+E快捷键进入翻译模式，原理是opencc查表进行中英文互译，能否翻译取决于词表的丰富度；
 
 **字符集过滤：** 默认开启过滤，写在charset.dict.yaml的就是可以通过的字表，默认为8105+𰻞𰻞，如果你想什么字在小字集模式可以通过可以写在这里，配套开关【小字集、大字集】，快捷键Ctrl+g 
-
-**自定义词库：** 自定义词库首先要利用[LMDG](https://github.com/amzxyz/RIME-LMDG)中的脚本将你自己的词库刷成与万象同类型的声调、或者声调+辅助码的形态，因为主词库要参与转写。对于custom_phrase则需要手动编辑编码为实际输入的编码
-
-<img alt="pay" src="./custom/万象输入方案.png" height="3000" width="1000">
-
-## 鸣谢
-
-- 感谢网友的热情提报问题，使得模型和词库体验进一步提升。
-
-## 赞赏
-
-如果觉得项目好用，可以请AMZ喝咖啡
-
-<img alt="pay" src="./custom/赞赏.jpg" height="312" width="446">
