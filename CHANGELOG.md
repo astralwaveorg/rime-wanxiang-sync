@@ -1,5 +1,54 @@
 # Changelog
 
+## [12.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.2...v12.6.0) (2025-09-18)
+
+
+### ✨ 新特性
+
+* 全新基于滤镜的反查辅助方案Lua，支持你ni`re、ni`rfer、ni`hspz...全场景辅助 ([5708a1d](https://github.com/amzxyz/rime_wanxiang/commit/5708a1d9a586db1b7bf671d9064f7abbdcc46cfe))
+
+## [12.5.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.1...v12.5.2) (2025-09-18)
+
+
+### 🐛 Bug 修复
+
+* 成对符号候选修复若干bug ([cf472a4](https://github.com/amzxyz/rime_wanxiang/commit/cf472a48d4f56d78a4192f2bda7ce9cb297aa33d))
+
+
+### 🏡 杂项
+
+* 创建release ([80ee7f5](https://github.com/amzxyz/rime_wanxiang/commit/80ee7f5da96ea571632dda41feb0b0b38442014b))
+
+## [12.5.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.0...v12.5.1) (2025-09-18)
+
+
+### 📚 词库更新
+
+* 词库调整 ([a55c91a](https://github.com/amzxyz/rime_wanxiang/commit/a55c91a0538975fb139b063c96ebfe2c17aaecc3))
+
+
+### 🐛 Bug 修复
+
+* 修复成对符号包裹时候次选异常的问题 ([5428a6e](https://github.com/amzxyz/rime_wanxiang/commit/5428a6e357a7da8cbb0909effe18185fd5783690))
+* 快符同时简化为单字母加/ ([c57da1f](https://github.com/amzxyz/rime_wanxiang/commit/c57da1fd9b3def31d4543090cbbc322ed7cbb07d))
+
+## [12.5.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.4.1...v12.5.0) (2025-09-18)
+
+
+### ✨ 新特性
+
+* 滤镜文本格式化新增为第一候选加上成对符号的功能 ([dca62d3](https://github.com/amzxyz/rime_wanxiang/commit/dca62d3ea010ea0ab942bb137d0fb949274f5323))
+
+
+### 📚 词库更新
+
+* 词库调整 ([eccaf6c](https://github.com/amzxyz/rime_wanxiang/commit/eccaf6ce31b920c76d889159dff5e6e908d2314b))
+
+
+### 🐛 Bug 修复
+
+* 反斜杠加入后引导能力 ([b8f38e7](https://github.com/amzxyz/rime_wanxiang/commit/b8f38e768e3e79f614612da0eaf1efc6a03b4aea))
+
 ## [12.4.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.4.0...v12.4.1) (2025-09-15)
 
 
