@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.6.2](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.1...v12.6.2) (2025-09-19)
+
+
+### 🐛 Bug 修复
+
+* 修复全拼 ([aab2949](https://github.com/amzxyz/rime_wanxiang/commit/aab2949bf4b028e3c062579ff6a493a6f29b5784))
+
+## [12.6.1](https://github.com/amzxyz/rime_wanxiang/compare/v12.6.0...v12.6.1) (2025-09-19)
+
+
+### 🐛 Bug 修复
+
+* 仓9适配新Lua ([3fc9736](https://github.com/amzxyz/rime_wanxiang/commit/3fc9736ccc3705c1c89d19c6c7a28a1038202c2a))
+
+
+### 🏡 杂项
+
+* 创建release ([95c7b58](https://github.com/amzxyz/rime_wanxiang/commit/95c7b58c65139b47c652d49e2412e848705dfde2))
+
 ## [12.6.0](https://github.com/amzxyz/rime_wanxiang/compare/v12.5.2...v12.6.0) (2025-09-18)
 
 
