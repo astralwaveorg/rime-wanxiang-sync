@@ -7,6 +7,7 @@ name: compatible
 version: "LTS"
 sort: by_weight
 ...
+吃子	chī zǐ	411
 教授	jiāo shòu	609
 一简	yī jiǎn	340
 散发	sàn fà	560
@@ -17,6 +18,24 @@ sort: by_weight
 他调了	tā tiáo le	190
 我调了	wǒ tiáo le	190
 又调了	yòu tiáo le	280
+将棋手	jiāng qí shǒu	204
+将棋盘	jiāng qí pán	160
+将棋子	jiāng qí zǐ	155
+炸焦	zhá jiāo	410
+炸点	zhá diǎn	343
+炸好	zhá hǎo	413
+炸成	zhá chéng	483
+炸起	zhá qǐ	311
+炸着	zhá zhe	288
+炸起了	zhá qǐ le	152
+炸起来	zhá qǐ lái	156
+炸好的	zhá hǎo de	270
+炸成了	zhá chéng le	162
+炸过了	zhá guò le	158
+炸出了	zhá chū le	155
+炸过吧	zhá guò ba	169
+炸出来了	zhá chū lái le	10
+香炸	xiāng zhá	416
 还上	huán shàng	640
 重重	zhòng zhòng	470
 还得了	huán de liǎo	200
@@ -47,6 +66,7 @@ sort: by_weight
 调调	tiáo tiáo	460
 明朝	míng zhāo	330
 没入	mò rù	4330
+说客	shuō kè	441
 没入了	mò rù le	156
 卡在	qiǎ zài	341
 卡在了	qiǎ zài le	161
@@ -78,6 +98,8 @@ sort: by_weight
 忒长了	tēi zhǎng le	60
 没落到	méi luò dào	220
 没落地	mò luò de	310
+血债血还	xiě zhài xiě huán
+血债血偿	xiě zhài xiě cháng
 难兄难弟	nán xiōng nàn dì	12
 卡在那里	qiǎ zài nà lǐ	39
 卡在哪里	qiǎ zài nǎ lǐ	32
