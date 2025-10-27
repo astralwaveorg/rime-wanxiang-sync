@@ -7,6 +7,11 @@ name: compatible
 version: "LTS"
 sort: by_weight
 ...
+捏坏	niē pēi	120
+糁馆	sá guǎn	88
+糁面	sá miàn	83
+糁粥	sá zhōu	94
+糁汤	sá tāng	67
 吃子	chī zǐ	411
 教授	jiāo shòu	609
 褪去	tùn qù	340
@@ -18,6 +23,11 @@ sort: by_weight
 支着	zhī zhāo	341
 一朝	yì cháo	310
 特勒	tè lēi	310
+大汗	dà hán	481
+玉米糁粥	yù mǐ sá zhōu
+玉米糁汤	yù mǐ sá tāng
+玉米糁面	yù mǐ sá miàn
+玉米糁饼	yù mǐ sá bǐng
 将进酒	jiāng jìn jiǔ	169
 调了吧	tiáo le ba	170
 他调了	tā tiáo le	190
@@ -333,6 +343,10 @@ sort: by_weight
 不为	bù wéi	620
 不长	bù zhǎng	330
 长的	cháng de	800
+咳痰	kǎ tán	210
+委屈	wěi qu	656
+精神	jīng shen	816
+朴树	pò shù	400
 长不长	cháng bù cháng	330
 长头发	cháng tóu fā	500
 长头发	zhǎng tóu fā	500
@@ -343,6 +357,19 @@ sort: by_weight
 长羽毛	cháng yǔ máo	250
 长羽毛	zhǎng yǔ máo	250
 区队长	qū duì zhǎng	280
+会落下	huì là xià	168
+落下了	là xià le	234
+他落下	tā là xià	110
+我落下	wǒ là xià	109
+已落下	yǐ là xià	110
+落下的	là xià de	312
+落下一个	là xià yí gè	1
+落下一个人	là xià yí gè rén	1
+不要落下	bú yào là xià	33
+不要落下	bú yào lào xià	33
+落下的功课	là xià de gōng kè	1
+落下的课程	là xià de kè chéng	1
+已经落下了	yǐ jīng là xià le	1
 重活	chóng huó	120
 重天	chóng tiān	500
 穿着	chuān zhe	740
@@ -357,6 +384,7 @@ sort: by_weight
 累累	léi léi	580
 累累	lěi lěi	510
 落下	luò xià	820
+落下	luò xià	400
 略长	lüè cháng	450
 掠夺	lüè duó	690
 掠夺	lüě duó	300
@@ -1784,7 +1812,7 @@ sort: by_weight
 这片海	zhèi piàn hǎi	340
 这片湖	zhèi piàn hú	220
 这篇文	zhèi piān wén	440
-这便宜	zhèi pián yì	330
+这便宜	zhèi pián yi	330
 这片子	zhèi piān zi	500
 这票的	zhèi piào de	260
 这破店	zhèi pò diàn	220
@@ -1897,7 +1925,7 @@ sort: by_weight
 这首诗	zhèi shǒu shī	590
 这手速	zhèi shǒu sù	200
 这舒服	zhèi shū fú	230
-这数字	zhèi shù zi	390
+这数字	zhèi shù zì	390
 这双手	zhèi shuāng shǒu	350
 这双鞋	zhèi shuāng xié	500
 这谁啊	zhèi shuí a	300
@@ -2879,6 +2907,7 @@ sort: by_weight
 也不熟	yě bù shóu	230
 也熟了	yě shóu le	80
 也熟悉	yě shóu xī	160
+烫熟	tàng shóu	462
 已成熟	yǐ chéng shóu	190
 一锅熟	yì guō shóu	100
 异熟果	yì shóu guǒ	130
@@ -4686,7 +4715,7 @@ sort: by_weight
 三个直	sān gè zhí	1
 三个𠙽	sān gè zhì	1
 三个𦉼	sān gè zhì	1
-四个曰	sān gè zhì	1
+四个曰	sì gè rì	1
 三个𣥚	sān gè zhì	1
 三个至	sān gè zhì	1
 三个丶	sān gè zhǔ	1
@@ -4701,7 +4730,7 @@ sort: by_weight
 手指头	shǒu zhǐ tou	1
 四个匕	sì gè bǐ	1
 四个屮	sì gè chè	1
-四个车	sì gè chè	1
+四个车	sì gè chē	1
 四个車	sì gè chē	1
 四个春	sì gè chūn	1
 四个朿	sì gè cì	1
