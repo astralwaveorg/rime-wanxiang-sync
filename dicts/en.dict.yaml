@@ -787,6 +787,9 @@ ore	Ore
 org	Org
 ORM	ORM
 Orz	Orz
+PLC	PLC
+modbus	modbus
+rtu	rtu
 OSS	OSS
 OTC	OTC
 our	Our
@@ -1320,6 +1323,7 @@ bps	Bps
 eft	Eft
 eon	Eon
 han	Han
+GKD	GKD
 nit	Nit
 fen	Fen
 boh	Boh
@@ -2471,6 +2475,7 @@ Kona	Kona
 kong	Kong
 Korn	Korn
 Kris	Kris
+InSAR	InSAR
 Kurt	Kurt
 l10n	L10n
 labs	Labs
@@ -4680,6 +4685,7 @@ audio	Audio
 audit	Audit
 aural	Aural
 aurum	Aurum
+AcFun	AcFun
 autos	Autos
 avail	Avail
 avant	Avant
@@ -9113,6 +9119,7 @@ louis	Louis
 jumer	Jumer
 jumpy	Jumpy
 stomp	Stomp
+trime	Trime
 hough	Hough
 hyrax	Hyrax
 squat	Squat
@@ -12532,6 +12539,7 @@ unisex	Unisex
 united	United
 unless	Unless
 unlike	Unlike
+userdb	Userdb
 unload	Unload
 unlock	Unlock
 unpaid	Unpaid
@@ -25858,6 +25866,10 @@ literary	Literary
 lividity	Lividity
 lobbying	Lobbying
 locality	Locality
+AirPlay	AirPlay
+Graphene	Graphene
+qubit	Qubit
+qubits	Qubits
 localization	L10n
 locating	Locating
 location	Location
@@ -37209,6 +37221,7 @@ cankerous	Cankerous
 bespatter	Bespatter
 overspill	Overspill
 menstruum	Menstruum
+displacive	Displacive
 hemolysis	Hemolysis
 slideback	Slideback
 glissando	Glissando
